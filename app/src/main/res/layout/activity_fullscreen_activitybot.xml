@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="boris.narodov.catsinsquares.FullscreenActivitybot">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <ImageView
+        android:id="@+id/backgroundGameBot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/background"
+        android:scaleType="centerCrop"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+
+        android:textStyle="bold" />
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/wooden"
+            >
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView3Bot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/dalmata_dream_normal_109866"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="italic" />
+
+                <ImageButton
+                    android:id="@+id/imageButton29Bot"
+                    style="@style/mainButtonsIn"
+                    />
+            </TableRow>
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
+
+                <ImageButton
+                    android:id="@+id/firstFirstBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot" />
+
+                <ImageButton
+                    android:id="@+id/firstSecondBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/firstThirdBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/firstFourthBot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/nothing"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"
+                    android:onClick="talkBot"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
+
+                <ImageButton
+                    android:id="@+id/secondFirstBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/secondSecondBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/secondThirdBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot" />
+
+                <ImageButton
+                    android:id="@+id/secondFourthBot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/nothing"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"
+                    android:onClick="talkBot"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
+
+                <ImageButton
+                    android:id="@+id/thirdFirstBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/thirdSecondBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/thirdThirdBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/thirdFourthBot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/nothing"
+                    android:background="@android:color/transparent"
+                    android:onClick="talkBot"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
+
+                <ImageButton
+                    android:id="@+id/fourthFirstBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/fourthSecondBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/fourthThirdBot"
+                    style="@style/mainButtonsIn"
+                    android:onClick="talkBot"/>
+
+                <ImageButton
+                    android:id="@+id/fourthFourthBot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/nothing"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"
+                    android:onClick="talkBot"/>
+            </TableRow>
+
+            <boris.google.android.ads.nativetemplates.TemplateView
+                android:id="@+id/my_templateBotGame"
+                app:gnt_template_type="@layout/gnt_small_template_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                />
+
+        </TableLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

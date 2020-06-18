@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cats in squares</string>
+    <string name="rules">Правила</string>
+    <string name="sound_on">Звук</string>
+    <string name="exit">Вихід</string>
+    <string name="language">Мова</string>
+    <string name="two_players">Два гравця</string>
+    <string name="play">Грати</string>
+    <string name="redGo">Наступний хід: Ходить білий кіт</string>
+    <string name="redWin">Переміг білий кіт</string>
+    <string name="blueWin">Переміг чорний кіт</string>
+    <string name="blueGo">Наступний хід: Ходить чорний кіт</string>
+    <string name="back">Назад</string>
+    <string name="choose">Вибір мови</string>
+    <string name="youWin">Ви перемогли</string>
+    <string name="youLose">Ви програли</string>
+    <string name="youWinbot">Ви перемогли. Нажміть на екран</string>
+    <string name="youLosebot">Ви програли. Нажміть на екран</string>
+    <string name="firstStep">Виберіть будь-яку картку з краю поля</string>
+    <string name="rulesFirst">"Cats in squares - гра на двох, яка зображає боротьбу двох котів за увагу та прихильність хазяїна.
+        \nПоле гри складається з 16 карток дому хазяїна, але з різним інвентарем кота.
+        \n\nЛокації: вікно, підлога, двір, батарея.
+        \nІнвентар кота: миска з кормом, миша, лежанка, переноска."</string>
+    <string name="rulesSecond">"Мета гри:\n\n
+        Щоб добитись уваги господаря, потрібно першим виконати одну с трьох умов перемоги:
+        \n1) Викласти вертикальний чи горизонтальний ряд з чотирьох жетонів котів вашого кольору на ігровому полі.
+        \n2) Викласти квадрат 2х2 з чотирьох жетонів котів вашого кольору на ігровому полі.
+        \n3) Перекрити всі ходи супротивнику, щоб у нього не залишалось можливості продовжувати гру."</string>
+    <string name="rulesThird">"Як грати:\n
+        Перший гравець бере будь-яку картку з краю ігрового поля, тобто в першому раунді він не може брати ні одну з чотирьох карток, які знаходяться в центрі поля.
+        Картка, яку він прибрав з поля, визначає правила подальших дій другого гравця. Другий гравец тепер може прибрати тільки таку картку, на якій локація чи інвентар співпадає з зображеними на карткі, яка вибрана першим гравцем.
+         Тепер прибрана картка визначає правила для його суперника.
+        \nДалі гра продовжується, доки хто-небудь з учасників не виконає одну з умов перемоги. "</string>
+    <string name="easy">легкий</string>
+    <string name="medium">середній</string>
+    <string name="hard">важкий</string>
+    <string name="level">Виберіть складність</string>
+    <string name="condition">Поле не підходить під умови</string>
+    <string name="Playagain">Зіграти ще раз?</string>
+    <string name="yes">так</string>
+    <string name="menu">меню</string>
+
+</resources>

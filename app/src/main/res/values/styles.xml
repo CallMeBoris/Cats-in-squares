@@ -1,0 +1,103 @@
+<resources>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#FFCC00</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:background">#311b92</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/labor_union_regular</item>
+
+    </style>
+    <!-- Base application theme. -->
+    <style name="Menu" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#1e88e5</item>
+        <item name="colorPrimaryDark">#311b92</item>
+        <item name="android:textColorPrimary">#e0f7fa</item>
+        <item name="android:windowBackground">#4dd0e1</item>
+        <item name="colorAccent">#311b92</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#1e88e5</item>
+        <item name="colorPrimaryDark">#311b92</item>
+        <item name="android:textColorPrimary">#e0f7fa</item>
+        <item name="android:textColor">#311b92</item>
+        <item name="android:fontFamily">@font/y_files_punch_italic</item>
+        <item name="android:windowBackground">#4dd0e1</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <!--        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>-->
+        <!--        <item name="android:windowActionBarOverlay">true</item>-->
+        <!--        <item name="android:windowBackground">@null</item>-->
+        <!--        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>-->
+        <!--        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>-->
+        <!--        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>-->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="mainButtonsIn">
+        <item name="srcCompat">@drawable/nothing</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="buttonsMenuExit">
+        <item name="android:minWidth">120dp</item>
+        <item name="android:minHeight">70dp</item>
+        <item name="android:background">@drawable/button_main</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">50dp</item>
+        <item name="android:layout_marginRight">70dp</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center|center_horizontal|center_vertical</item>
+        <item name="android:fontFamily">@font/labor_union_regular</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="buttonsMenu">
+        <item name="android:background">@drawable/button_main</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">110dp</item>
+        <item name="android:layout_marginRight">110dp</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center|center_horizontal|center_vertical</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:fontFamily">@font/labor_union_regular</item>
+    </style>
+
+    <style name="layhor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="customfontstyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/wobbly_bob_regular</item>
+    </style>
+
+</resources>
+

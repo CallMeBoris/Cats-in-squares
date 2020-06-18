@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Cats in squares</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+    <string name="title_activity_fullscreen_activitybot" translatable="false">FullscreenActivitybot</string>
+    <string name="rules">Rules</string>
+    <string name="sound_on">Sound</string>
+    <string name="exit">Exit</string>
+    <string name="language">Language</string>
+    <string name="two_players">Two players</string>
+    <string name="play">Play</string>
+    <string name="redGo">Next move:\nWhite cat move</string>
+    <string name="redWin">White cat win</string>
+    <string name="blueWin">Black cat win</string>
+    <string name="blueGo">Next move:\nBlack cat move</string>
+    <string name="english" translatable="false">English</string>
+    <string name="deutsch" translatable="false">Deutsch</string>
+    <string name="russian" translatable="false">Русский</string>
+    <string name="ukranian" translatable="false">Українська</string>
+    <string name="back">Back</string>
+    <string name="choose">Language selection</string>
+    <string name="gameName" translatable="false">Cats in squares</string>
+    <string name="youWin">You win</string>
+    <string name="youLose">You lose</string>
+    <string name="youLosebot">You lose. Tap the screen</string>
+    <string name="youWinbot">You win. Tap the screen</string>
+    <string name="firstStep">Draw any card from the edge of the field</string>
+    <string name="rulesFirst">Cats in squares is a two player game in which two cats fight for their master\'s attention and affection.
+        \nThe playing field consists of 16 cards displaying different places of the master\'s  house with various cat stuff.
+\n\n
+House locations: window, floor, yard, heater\n
+Cat stuff: bowl, mouse, cat bed, carrier.</string>
+    <string name="rulesSecond">The aim of the game is to meet one of the three victory conditions:
+\n\n
+1. Completely fill a vertical or horizontal row on the playing field with 4 cat cards of your color.
+\n2. Form a 2x2 square on the playing field with 4 cat cards of your color.
+\n3. Fill the playing field with cat cards so that the opponent cannot make another move.</string>
+    <string name="rulesThird">How to play:/n
+The first player draws any card from the edge of the field, i.e. four cards from the center of the field may not be played on the first move. The card drawn from the field determines the further actions of the second player. Now the second player can only draw the card on which the location of the house or the cat\'s stuff matches the place or cat\'s stuff displayed on the card drawn by the first player. The newly drawn card now determines the further actions of the first player.
+        \nThe game continues until one of players meets one of victory conditions.
+</string>
+
+    <string name="easy">easy</string>
+    <string name="medium">medium</string>
+    <string name="hard">hard</string>
+    <string name="level">Choose difficulty</string>
+    <string name="condition">The field does not match the condition</string>
+    <string name="Playagain">Play again?</string>
+    <string name="yes">yes</string>
+    <string name="menu">menu</string>
+
+    <string name="title_activity_fullscreen_bot_hard" translatable="false">FullscreenActivityBotHard</string>
+
+    <string name="title_activity_fullscreen_online">FullscreenActivityOnline</string>
+
+    <string name="title_activity_fullscreen_online2">FullscreenActivityOnline2</string>
+
+    <string name="title_activity_real_online">Real_online</string>
+</resources>

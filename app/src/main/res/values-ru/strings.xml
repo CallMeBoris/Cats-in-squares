@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cats in squares</string>
+    <string name="rules">Правила</string>
+    <string name="sound_on">Звук</string>
+    <string name="exit">Выход</string>
+    <string name="language">Язык</string>
+    <string name="two_players">Два игрока</string>
+    <string name="play">Играть</string>
+    <string name="redGo">Следующий ход:\nХодит белый кот</string>
+    <string name="redWin">Победил белый кот</string>
+    <string name="blueWin">Победил чёрный кот</string>
+    <string name="blueGo">Следующий ход:\nХодит чёрный кот</string>
+    <string name="back">Назад</string>
+    <string name="choose">Выбор языка</string>
+    <string name="youWin">Вы победили</string>
+    <string name="youLose">Вы проиграли</string>
+    <string name="easy">лёгкий</string>
+    <string name="medium">средний</string>
+    <string name="hard">сложный</string>
+    <string name="level">Выберите сложность</string>
+    <string name="condition">Поле не подходит под условие</string>
+    <string name="Playagain">Сыграть ещё раз?</string>
+    <string name="yes">да</string>
+    <string name="menu">меню</string>
+    <string name="youLosebot">Вы проиграли. Нажмите на экран</string>
+    <string name="youWinbot">Вы победили. Нажмите на экран</string>
+    <string name="firstStep">Выберите любую карточку с края поля</string>
+    <string name="rulesFirst">Cats in squares - игра для двоих, изображающая борьбу двух котов за внимание и расположение хозяина.
+    \nПоле игры состоит из 16 карточек дома хозяина, но с разным инвентарём кота.\n
+    \nЛокации: окно, пол, двор, батарея.
+        \nИнвентарь кота: миска с кормом, мышь, лежанка, переноска.\n</string>
+    <string name="rulesSecond">Цель игры:\n
+    \nЧтобы добиться внимания хозяина, нужно первым выполнить одно из трёх условий победы:
+    \n1) Выложить вертикальный или горизонтальный ряд из четырёх жетонов котов вашего цвета на игровом поле.
+    \n2) Выложить квадрат 2x2 из четырёх жетонов котов вашего цвета на игровом поле.
+    \n3) Перекрыть все ходы противнику, чтобы у него не оставалось возможности продолжать игру.</string>
+    <string name="rulesThird">Как играть:\n
+    Первый игрок берёт любую карточку с края игрового поля, то есть в первом раунде он не может брать ни одну из четырёх карточек, что
+        находятся в центре поля. Карточка, которую он убрал с поля, определяет правила дальнейших действий второго игрока. Второй игрок
+    теперь может убрать только такую карточку, на которой локация или инвентарь совпадает с изображёнными на карточке, выбранной первым игроком.
+    Теперь убранная карточка определяет правила для его соперника.\nДалее игра продолжается, пока кто-нибудь из участников не выполнит одно из условий победы.</string>
+
+</resources>

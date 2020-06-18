@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cats in squares</string>
+    <string name="rules">Regeln</string>
+    <string name="sound_on">Ton</string>
+    <string name="exit">Ausgang</string>
+    <string name="language">Sprache</string>
+    <string name="two_players">Zwei Spieler</string>
+    <string name="play">Spielen</string>
+    <string name="redGo">Nächster Schritt:\nWeiße Katze ist dran</string>
+    <string name="redWin">Weiße Katze hat gewonnen</string>
+    <string name="blueWin">Schwarze Katze hat gewonnen</string>
+    <string name="blueGo">Nächster Schritt:\nSchwarze Katze ist dran</string>
+    <string name="back">Zurück</string>
+    <string name="choose">Sprachauswahl</string>
+    <string name="youWin">Sie haben gewonnen</string>
+    <string name="youLose">Sie haben verloren</string>
+    <string name="easy">leicht</string>
+    <string name="medium">mittelschwer</string>
+    <string name="hard">schwer</string>
+    <string name="level">Wähle Sie den Schwierigkeitsgrad</string>
+    <string name="condition">Das Feld entspricht nicht der Bedingung</string>
+    <string name="Playagain">Wollen Sie nochmal spielen?</string>
+    <string name="yes">ja</string>
+    <string name="menu">menü</string>
+    <string name="youLosebot">Sie haben verloren. Berühren Sie den Bildschrim</string>
+    <string name="youWinbot">Sie haben gewonnen. Berühren Sie den Bildschrim</string>
+    <string name="firstStep">Ziehen Sie eine beliebige Karte vom Spielfeldrand</string>
+    <string name="rulesFirst">Cats in squares ist ein Spiel für zwei Spieler, in dem zwei Katzen um Achtung und Zuneigung ihres Herrchens kämpfen.\n
+        Das Spielfeld besteht aus 16 Karten, auf den unterschiedliche Orte des Hauses mit diversem Katzenkram dargestellt sind.\n
+        Orte des Hauses: Fenster, Fußboden, Hof, Heizung\n
+        Katzenkram: Napf, Maus, Katzenbett, Katzenträger.\n</string>
+    <string name="rulesSecond">Ziel des Spiels ist es, eine der drei Siegbedingungen zu erfüllen:\n
+\n1. Eine vertikale oder horizontale Reihe mit 4 Katzenkarten Ihrer Farbe auf dem Spielfeld komplett zu füllen.
+\n2. Ein 2x2 Quadrat mit 4 Katzenkarten Ihrer Farbe auf dem Spielfeld zu bilden
+\n3. Das Spielfeld mit Katzenkarten so zu füllen, dass der Gegner keinen weiteren Zug machen kann.
+</string>
+    <string name="rulesThird">Wie wird gespielt:
+        Der erste Spieler zieht eine beliebige Karte vom Spielfeldrand, d.h. im ersten Zug dürfen vier Karten aus der Spielfeldmitte nicht gespielt werden. Die vom Spielfeld gezogene Karte bestimmt das weitere Vorgehen für den zweiten Spieler. Jetzt kann der zweite Spieler nur die Karte ziehen, auf der der Ort des Hauses oder der Katzenkram mit dem Ort oder Katzenkram auf der vom ersten Spieler gezogenen Karte übereinstimmen. Die neu gezogene Karte bestimmt jetzt das weitere Vorgehen für den ersten Spieler.
+        \nSo geht das Spiel weiter bis einer der Spieler eine der Siegbedingungen erfüllt.</string>
+</resources>

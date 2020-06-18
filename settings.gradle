@@ -1,0 +1,4 @@
+rootProject.name='Catsinsquares'
+include ':app', ':nativetemplates'
+include ':app', ':auth'
+

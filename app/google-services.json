@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1093556037938",
+    "firebase_url": "https://cats-in-squares.firebaseio.com",
+    "project_id": "cats-in-squares",
+    "storage_bucket": "cats-in-squares.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093556037938:android:d281860a7c874afa3f8f2b",
+        "android_client_info": {
+          "package_name": "boris.narodov.catsinsquares"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093556037938-dl26tljko09bjfnig6b72sns151gmm1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "boris.narodov.catsinsquares",
+            "certificate_hash": "3b6b1b6920e4a43b891757a60616368faeca5177"
+          }
+        },
+        {
+          "client_id": "1093556037938-dndv6ido5jkgagpfumv5h7r7hoho3l8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSKDHdZQVpr15EDS1fzvSVFdaFaVZXmJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093556037938-dndv6ido5jkgagpfumv5h7r7hoho3l8k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
