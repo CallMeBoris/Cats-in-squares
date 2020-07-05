@@ -13,17 +13,13 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import boris.narodov.catsinsquares.R;
 
 import boris.google.android.ads.nativetemplates.NativeTemplateStyle;
 import boris.google.android.ads.nativetemplates.TemplateView;
@@ -31,11 +27,8 @@ import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.tasks.Task;
 
 import java.util.Random;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

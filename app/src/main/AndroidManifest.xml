@@ -17,18 +17,6 @@
             android:screenOrientation="locked"
             android:theme="@style/FullscreenTheme"/>
         <activity
-            android:name=".FullscreenActivityOnline2"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/gameName"
-            android:screenOrientation="locked"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".FullscreenActivityOnline"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/gameName"
-            android:screenOrientation="locked"
-            android:theme="@style/FullscreenTheme" />
-        <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:launchMode="standard"
             tools:replace="android:launchMode" />

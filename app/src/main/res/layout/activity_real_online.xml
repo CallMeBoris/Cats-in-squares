@@ -63,7 +63,8 @@
 
                     <ImageButton
                         android:id="@+id/imageButton29RealOnline"
-                        style="@style/mainButtonsIn" />
+                        style="@style/mainButtonsIn"
+                        android:onClick="startGame"/>
                 </TableRow>
 
                 <TableRow

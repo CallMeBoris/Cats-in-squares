@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 
-import boris.narodov.catsinsquares.R;
-
 import boris.google.android.ads.nativetemplates.NativeTemplateStyle;
 import boris.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdLoader;
@@ -23,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences spref;
     final String SAVED_BOOL = "saved_bool";
+    final String SAVED_BOOL2 = "saved_bool2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +101,7 @@ private void savedCheck(){
         spref = getSharedPreferences("forsound",Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = spref.edit();
         ed.putBoolean(SAVED_BOOL,isSound());
+        ed.putBoolean(SAVED_BOOL2, true);
         ed.apply();
 }
 

@@ -1,7 +1,5 @@
 package boris.narodov.catsinsquares;
 
-import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,10 +13,7 @@ import android.view.View;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import boris.narodov.catsinsquares.R;
-
 import java.util.Locale;
-import java.util.Objects;
 
 public class Language extends AppCompatActivity {
 

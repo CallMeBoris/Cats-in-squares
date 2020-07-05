@@ -7,8 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,32 +16,29 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import boris.google.android.ads.nativetemplates.NativeTemplateStyle;
@@ -55,8 +51,19 @@ import boris.google.android.ads.nativetemplates.TemplateView;
 public class Real_online extends AppCompatActivity {
     SharedPreferences spref;
     final String SAVED_BOOL = "saved_bool";
+    final String SAVED_BOOL2 = "saved_bool2";
     public int idimage=0;
     Animation anim;
+    public String firstPlayer;
+    public String secondPlayer;
+    public ArrayList<String> players = new ArrayList<>();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("OnlineGame");
+    String matrixtoString="";
+    DatabaseReference image = database.getReference("OnlineGameImage");
+    DatabaseReference player = database.getReference("playerName");
+    public boolean isMove;
+
 
     HashMap<Integer,Integer> matrixImage = new HashMap<>();
 
@@ -94,7 +101,7 @@ public class Real_online extends AppCompatActivity {
         @Override
         public void run() {
 
-            mediaPlayer = MediaPlayer.create(getBaseContext(),R.raw.longsecond);
+            mediaPlayer = MediaPlayer.create(getBaseContext(),R.raw.longfirst);
             mediaPlayer.setLooping(true);
             if (!mediaPlayer.isPlaying()){
                 mediaPlayer.start();}
@@ -172,32 +179,32 @@ public class Real_online extends AppCompatActivity {
     };
 
 
-    int numberPlayer;
-    boolean white = true;
+    private static int SIGN_IN_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==SIGN_IN_CODE){
+            if (resultCode==RESULT_OK){
+               makeGame();
+            }else{
+                finish();
+            }
+        }
+    }
 
 
     @Override
     protected synchronized void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_real_online);
+
         idimage=0;
-        put();
-
-        findViewById(R.id.secondSecondRealOnline).setEnabled(false);
-        findViewById(R.id.secondThirdRealOnline).setEnabled(false);
-        findViewById(R.id.thirdSecondRealOnline).setEnabled(false);
-        findViewById(R.id.thirdThirdRealOnline).setEnabled(false);
-
-
+        allButtons(false);
 
         TextView textView =(TextView) findViewById(R.id.textViewRealOnline);
         try {
             textView.setText(getText(R.string.firstStep));}catch (Exception e){}
-
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
 
         Thread forSound = new Thread(sound);
 
@@ -205,11 +212,25 @@ public class Real_online extends AppCompatActivity {
         if (spref.getBoolean(SAVED_BOOL,false)){
             forSound.start();}
 
+        if(FirebaseAuth.getInstance().getCurrentUser()==null){
+
+            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(), SIGN_IN_CODE);
+            makeGame();
+        }else {
+            makeGame();
+        }
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
+
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -224,28 +245,6 @@ public class Real_online extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-//D:\ProgramFiles\Nox\bin\nox_adb.exe connect 127.0.0.1:62001
-
-
-
-        read();
-            //if(msg.length()>10){
-
-           // white=false;}
-            //else{//if (numberPlayer==0){
-            random();
-            vyvod();//}
-
-
-        for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
-                matrixtoString = matrixtoString + matrix[i][j];
-            }
-        }
-        myRef.push().setValue(matrixtoString);
-        matrixtoString="";
-
-        //player.push().setValue(numberPlayer+1);
 
         anim = AnimationUtils.loadAnimation(this, R.anim.anim);
 
@@ -266,14 +265,82 @@ public class Real_online extends AppCompatActivity {
                 .build();
 
         adLoader.loadAd(new AdRequest.Builder().build());
+
+//D:\ProgramFiles\Nox\bin\nox_adb.exe connect 127.0.0.1:62001
     }
 
-    private void showData(DataSnapshot dataSnapshot) {
-        for (DataSnapshot ds: dataSnapshot.getChildren()){
-            ForOnline forOnline = new ForOnline();
-            forOnline.setNumber(ds.child("playernumber").getValue(ForOnline.class).getNumber());
+    String namePlayer;
+private void makeGame(){
+    try{
+namePlayer = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        player.push().setValue(namePlayer);
+        checkUser();} catch (Exception e){}
+        try{
+        firstPlayer=players.get(0);
+            Log.i("players",players.get(0)+" first");}catch(Exception e){}
+  try{
+        secondPlayer=players.get(1);
+      Log.i("players",players.get(1)+" second");} catch(Exception e){}
+    put();
+try{
+    if (namePlayer.equals(firstPlayer)){
+        isMove = true;
+        allButtons(isMove);
+        random();
+        vyvod();
+        findViewById(R.id.secondSecondRealOnline).setEnabled(false);
+        findViewById(R.id.secondThirdRealOnline).setEnabled(false);
+        findViewById(R.id.thirdSecondRealOnline).setEnabled(false);
+        findViewById(R.id.thirdThirdRealOnline).setEnabled(false);
+        for (int i=0;i<4;i++){
+            for (int j=0;j<4;j++){
+                matrixtoString = matrixtoString + matrix[i][j];
+            }
         }
+        myRef.push().setValue(matrixtoString);
+        matrixtoString="";
+    }}catch (Exception e){}
+try {
+    if (namePlayer.equals(secondPlayer)) {
+        isMove = false;
+        allButtons(isMove);
+        read();
     }
+}catch (Exception e){}
+
+}
+
+public void checkUser(){
+    player.addChildEventListener(new ChildEventListener() {
+        @Override
+        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            String gamer = dataSnapshot.getValue(String.class);
+            if (!players.contains(gamer)){
+            players.add(gamer);}
+        }
+
+        @Override
+        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+        }
+
+        @Override
+        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+        }
+
+        @Override
+        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    });
+}
+
 
 
     @Override
@@ -378,25 +445,7 @@ public class Real_online extends AppCompatActivity {
     private  int count=1;
 
 
-   // RecyclerView messagesRecycler;
-    //ArrayList<String> messages = new ArrayList<>();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("OnlineGame");
-    String matrixtoString="";
-    DatabaseReference image = database.getReference("OnlineGameImage");
-
-
-    DatabaseReference player = database.getReference("playernumber");
-
-
     public synchronized void talk(View view) {
-
-//        messagesRecycler = findViewById(R.id.messagesRecycler);
-//        messagesRecycler.setLayoutManager(new LinearLayoutManager(this));
-
-       // final DataAdapter dataAdapter = new DataAdapter(this,messages);
-        //messagesRecycler.setAdapter(dataAdapter);
-
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
@@ -404,11 +453,11 @@ public class Real_online extends AppCompatActivity {
 
         int a;
 
-        if (count==1){
-            findViewById(R.id.secondSecondRealOnline).setEnabled(true);
-            findViewById(R.id.secondThirdRealOnline).setEnabled(true);
-            findViewById(R.id.thirdSecondRealOnline).setEnabled(true);
-            findViewById(R.id.thirdThirdRealOnline).setEnabled(true);}
+//        if (count==1){
+//            findViewById(R.id.secondSecondRealOnline).setEnabled(true);
+//            findViewById(R.id.secondThirdRealOnline).setEnabled(true);
+//            findViewById(R.id.thirdSecondRealOnline).setEnabled(true);
+//            findViewById(R.id.thirdThirdRealOnline).setEnabled(true);}
 
         boolean bool=usloviyeWin(matrix);
         if (!bool) {
@@ -474,14 +523,17 @@ read();
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
+
         });
     }
 
-    //public int numberForOnline;
     public void read2(){
         image.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                isMove = !isMove;
+                allButtons(isMove);
                 idimage = dataSnapshot.getValue(Integer.class);
                 ImageButton imageButtonExample = findViewById(R.id.imageButton29RealOnline);
                 try{imageButtonExample.startAnimation(anim);
@@ -534,7 +586,7 @@ read();
     public synchronized void step(int a, int n) {
         for (int i =0; i<4;i++){
             for (int j =0; j<4;j++){
-                if (matrix[i][j]==a&&matrix[i][j]!=77&&matrix[i][j]!=88&&!white){//n%2==0&&
+                if (matrix[i][j]==a&&matrix[i][j]!=77&&matrix[i][j]!=88&&namePlayer.equals(secondPlayer)){//n%2==0&&
                     int prom = matrix[i][j];
                     matrix[i][j]=88;
                     image.push().setValue(prom);
@@ -561,7 +613,7 @@ read();
                         }
                     }
                 }
-                else if (matrix[i][j]==a&&matrix[i][j]!=77&&matrix[i][j]!=88&&white){//&&n%2!=0
+                else if (matrix[i][j]==a&&matrix[i][j]!=77&&matrix[i][j]!=88&&namePlayer.equals(firstPlayer)){//&&n%2!=0
                     int prom = matrix[i][j];
                     matrix[i][j]=77;
                     image.push().setValue(prom);
@@ -601,11 +653,11 @@ read();
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
-        Intent intent = new Intent(this,Real_online.class);
+        //finish();
+        Intent intent = new Intent(getApplicationContext(),Real_online.class);
         startActivity(intent);
         finish();
     }
-
 
     public void okno(){
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
@@ -670,9 +722,10 @@ read();
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (namePlayer.equals(firstPlayer)){
         myRef.removeValue();
         image.removeValue();
-        player.removeValue();
+        player.removeValue();}
         try{
             mediaPlayer.release();}catch (Exception e){}
     }
@@ -696,5 +749,44 @@ read();
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
+    }
+
+    public void startGame(View view){
+        if(players.size()!=2||players.get(0).equals(players.get(1))||spref.getBoolean(SAVED_BOOL2,false)){
+            Log.i(TAG, "zashel");
+            spref = getSharedPreferences("forsound",Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed = spref.edit();
+            ed.putBoolean(SAVED_BOOL2, false);
+            ed.apply();
+            retry();
+        }
+        else {
+            makeGame();
+            findViewById(R.id.imageButton29RealOnline).setEnabled(false);
+            allButtons(true);
+            for (int i = 0; i < players.size(); i++) {
+                Log.i(TAG, players.get(i));
+            }
+       }
+    }
+    private static final String TAG = "LOLKEK";
+
+    public void allButtons(boolean bool){
+        findViewById(R.id.firstFirstRealOnline).setEnabled(bool);
+        findViewById(R.id.firstSecondRealOnline).setEnabled(bool);
+        findViewById(R.id.firstThirdRealOnline).setEnabled(bool);
+        findViewById(R.id.firstFourthRealOnline).setEnabled(bool);
+        findViewById(R.id.secondFirstRealOnline).setEnabled(bool);
+        findViewById(R.id.secondSecondRealOnline).setEnabled(bool);
+        findViewById(R.id.secondThirdRealOnline).setEnabled(bool);
+        findViewById(R.id.secondFourthRealOnline).setEnabled(bool);
+        findViewById(R.id.thirdFirstRealOnline).setEnabled(bool);
+        findViewById(R.id.thirdSecondRealOnline).setEnabled(bool);
+        findViewById(R.id.thirdThirdRealOnline).setEnabled(bool);
+        findViewById(R.id.thirdFourthRealOnline).setEnabled(bool);
+        findViewById(R.id.fourthFirstRealOnline).setEnabled(bool);
+        findViewById(R.id.fourthSecondRealOnline).setEnabled(bool);
+        findViewById(R.id.fourthThirdRealOnline).setEnabled(bool);
+        findViewById(R.id.fourthFourthRealOnline).setEnabled(bool);
     }
 }

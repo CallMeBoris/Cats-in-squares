@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import boris.narodov.catsinsquares.R;
-
 public class Rules extends AppCompatActivity {
     SharedPreferences spref;
     final String SAVED_BOOL = "saved_bool";
