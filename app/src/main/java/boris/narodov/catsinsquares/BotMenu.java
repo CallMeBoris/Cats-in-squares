@@ -11,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class BotMenu extends AppCompatActivity {
-
-
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,6 @@ public class BotMenu extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 
     public void easy(View view){
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);

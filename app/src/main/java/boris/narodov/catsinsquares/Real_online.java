@@ -89,9 +89,9 @@ public class Real_online extends AppCompatActivity {
     }
 
 
-    public int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
+    private int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
 
-    public int[][] buttons ={{R.id.firstFirstRealOnline,R.id.firstSecondRealOnline,R.id.firstThirdRealOnline,R.id.firstFourthRealOnline},
+    private int[][] buttons ={{R.id.firstFirstRealOnline,R.id.firstSecondRealOnline,R.id.firstThirdRealOnline,R.id.firstFourthRealOnline},
             {R.id.secondFirstRealOnline,R.id.secondSecondRealOnline,R.id.secondThirdRealOnline,R.id.secondFourthRealOnline},
             {R.id.thirdFirstRealOnline,R.id.thirdSecondRealOnline,R.id.thirdThirdRealOnline,R.id.thirdFourthRealOnline},
             {R.id.fourthFirstRealOnline,R.id.fourthSecondRealOnline,R.id.fourthThirdRealOnline,R.id.fourthFourthRealOnline}};

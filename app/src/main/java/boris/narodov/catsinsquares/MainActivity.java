@@ -19,9 +19,9 @@ import com.google.android.gms.ads.formats.UnifiedNativeAd;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
-    final String SAVED_BOOL2 = "saved_bool2";
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
+    private final String SAVED_BOOL2 = "saved_bool2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +45,11 @@ public class MainActivity extends AppCompatActivity {
         adLoader.loadAd(new AdRequest.Builder().build());
     }
 
-
-
     public void game(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
         if(isSound()){
         mp.start();}
-        Intent intent = new Intent(this, Real_online.class);
+        Intent intent = new Intent(this, FullscreenActivity.class);
         startActivity(intent);
         finish();
     }

@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class Rules extends AppCompatActivity {
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

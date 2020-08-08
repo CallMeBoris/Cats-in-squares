@@ -35,24 +35,22 @@ import boris.google.android.ads.nativetemplates.TemplateView;
  * status bar and navigation/system bar) with user interaction.
  */
 public class FullscreenActivity extends AppCompatActivity {
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
-    public int idimage=0;
-    Animation anim;
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
+    private int idimage=0;
+    private Animation anim;
+    private String setText=null;
+    private  int count=1;
 
-    public int[][] images ={{R.drawable.a11,R.drawable.a12,R.drawable.a13,R.drawable.a14},
-            {R.drawable.a21,R.drawable.a22,R.drawable.a23,R.drawable.a24},
-            {R.drawable.a31,R.drawable.a32,R.drawable.a33,R.drawable.a34},
-            {R.drawable.a41,R.drawable.a42,R.drawable.a43,R.drawable.a44}};
-
-    public int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
-
-    public int[][] buttons ={{R.id.firstFirst,R.id.firstSecond,R.id.firstThird,R.id.firstFourth},
+    private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
+    private int[][] images = matrixWithEverything.getImages();
+    private int[][] matrix = matrixWithEverything.getMatrix();
+    private int[][] buttons ={{R.id.firstFirst,R.id.firstSecond,R.id.firstThird,R.id.firstFourth},
             {R.id.secondFirst,R.id.secondSecond,R.id.secondThird,R.id.secondFourth},
             {R.id.thirdFirst,R.id.thirdSecond,R.id.thirdThird,R.id.thirdFourth},
             {R.id.fourthFirst,R.id.fourthSecond,R.id.fourthThird,R.id.fourthFourth}};
 
-    MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
     Runnable sound = new Runnable() {
         @Override
         public void run() {
@@ -140,10 +138,7 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
 
-        findViewById(R.id.secondSecond).setEnabled(false);
-        findViewById(R.id.secondThird).setEnabled(false);
-        findViewById(R.id.thirdSecond).setEnabled(false);
-        findViewById(R.id.thirdThird).setEnabled(false);
+        setFourButtons(false);
 
         TextView textView =(TextView) findViewById(R.id.textView3);
         try {
@@ -179,7 +174,7 @@ public class FullscreenActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        random();
+        matrixWithEverything.random();
         vyvod();
 
         anim = AnimationUtils.loadAnimation(this, R.anim.anim);
@@ -266,69 +261,21 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     }
 
-    public  void random(){
-        Random random = new Random();
-        for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
-                int index1 = random.nextInt(i+1);
-                int index2 = random.nextInt(j+1);
-                int a=images[index1][index2];
-                int b=matrix[index1][index2];
-                images[index1][index2]=images[i][j];
-                matrix[index1][index2]=matrix[i][j];
-                images[i][j]=a;
-                matrix[i][j]=b;
-            }
-        }
-    }
-
-    public boolean usloviyeWin(int[][] matr){
-        try{
-            for (int j=0; j<4;j++){
-                if(matr[0][j]==matr[1][j]&&matr[2][j] == matr[3][j]&&matr[1][j]==matr[3][j]){
-                    return true;
-                }
-                else if(matr[j][0]==matr[j][1]&&matr[j][2] == matr[j][3]&&matr[j][1]==matr[j][3]){
-                    return true;
-                }
-                else if(matr[0][j]==matr[1][j]&&matr[0][j+1] == matr[1][j+1]&&matr[1][j]==matr[1][j+1]){
-                    return true;
-                }
-                else if(matr[1][j]==matr[2][j]&&matr[1][j+1] == matr[2][j+1]&&matr[2][j]==matr[2][j+1]){
-                    return true;
-                }
-                else if(matr[2][j]==matr[3][j]&&matr[2][j+1] == matr[3][j+1]&&matr[3][j]==matr[3][j+1]){
-                    return true;
-                }
-            }
-        }catch (Exception ignored){}
-        return false;
-    }
-String setText=null;
-    private  int count=1;
-
-
     public synchronized void talk(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}
-
         int a;
+        if (count==1){setFourButtons(true);}
 
-        if (count==1){
-            findViewById(R.id.secondSecond).setEnabled(true);
-            findViewById(R.id.secondThird).setEnabled(true);
-            findViewById(R.id.thirdSecond).setEnabled(true);
-            findViewById(R.id.thirdThird).setEnabled(true);}
-
-        boolean bool=usloviyeWin(matrix);
+        boolean bool=matrixWithEverything.usloviyeWin(matrix);
         if (!bool) {
             a = proverka(view.getId());
             if (idimage == 0) {
                 idimage = a;
             }
-            if (uslovieZam(a, idimage)) {
+            if (matrixWithEverything.uslovieZam(a, idimage)) {
                 step(a, count);
                 count++;
                 idimage = a;//комментить когда бот
@@ -337,17 +284,6 @@ String setText=null;
             }
         }
         okno();
-    }
-
-
-    public boolean uslovieZam(int a, int b){
-        return a / 10 == b / 10 || a % 10 == b % 10;
-    }
-
-    public int counter(int count){
-        if (count%2==0){
-            return 2;
-        }else {return 1;}
     }
 
     public int proverka(int id){
@@ -378,10 +314,10 @@ String setText=null;
                     enabled.setEnabled(false);
                     try{textView.setText(getString(R.string.redGo));}catch (Exception e){}
                     vyvod();
-                    if (usloviyeWin(matrix)) {
-                        if (counter(count) == 1) {
+                    if (matrixWithEverything.usloviyeWin(matrix)) {
+                        if (matrixWithEverything.counter(count) == 1) {
                             try{textView.setText(getString(R.string.redWin));}catch (Exception e){}
-                        } else if (counter(count) == 2) {
+                        } else if (matrixWithEverything.counter(count) == 2) {
                             try{textView.setText(R.string.blueWin);}catch (Exception e){}
                         }
                     }
@@ -400,10 +336,10 @@ String setText=null;
 
                     enabled.setEnabled(false);
                     vyvod();
-                    if (usloviyeWin(matrix)) {
-                        if (counter(count) == 1) {
+                    if (matrixWithEverything.usloviyeWin(matrix)) {
+                        if (matrixWithEverything.counter(count) == 1) {
                             try{textView.setText(getString(R.string.redWin));}catch (Exception e){}
-                        } else if (counter(count) == 2) {
+                        } else if (matrixWithEverything.counter(count) == 2) {
                             try{textView.setText(getString(R.string.blueWin));}catch (Exception e){}
                         }
                     }
@@ -424,7 +360,6 @@ String setText=null;
         finish();
     }
 
-
     public void okno(){
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         boolean bool;
@@ -436,17 +371,17 @@ String setText=null;
                 }
             }
         }
-        bool=usloviyeWin(matrix);
+        bool=matrixWithEverything.usloviyeWin(matrix);
         if (k==16){
             bool=true;
         }
     if (bool){
-        if (counter(count-1)==1){
+        if (matrixWithEverything.counter(count-1)==1){
             TextView textView = findViewById(R.id.textView3);
             textView.setText(getString(R.string.redWin));
             setText=getString(R.string.redWin);
 
-        }else if (counter(count-1)==2){
+        }else if (matrixWithEverything.counter(count-1)==2){
             TextView textView = findViewById(R.id.textView3);
             textView.setText(getString(R.string.blueWin));
             setText=getString(R.string.blueWin);
@@ -481,6 +416,13 @@ String setText=null;
                     }});
         AlertDialog alert = builder.create();
         alert.show();}
+    }
+
+    private void setFourButtons(boolean bool){
+        findViewById(R.id.secondSecond).setEnabled(bool);
+        findViewById(R.id.secondThird).setEnabled(bool);
+        findViewById(R.id.thirdSecond).setEnabled(bool);
+        findViewById(R.id.thirdThird).setEnabled(bool);
     }
 
     @Override

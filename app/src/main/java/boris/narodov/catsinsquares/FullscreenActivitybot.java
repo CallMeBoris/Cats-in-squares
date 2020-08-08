@@ -34,28 +34,27 @@ import java.util.Random;
  * status bar and navigation/system bar) with user interaction.
  */
 public class FullscreenActivitybot extends AppCompatActivity {
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
-    Animation anim;
-    public int idimage=0;
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
+    private Animation anim;
+    private int idimage=0;
 
-    public int[][] images ={{R.drawable.a11,R.drawable.a12,R.drawable.a13,R.drawable.a14},
-            {R.drawable.a21,R.drawable.a22,R.drawable.a23,R.drawable.a24},
-            {R.drawable.a31,R.drawable.a32,R.drawable.a33,R.drawable.a34},
-            {R.drawable.a41,R.drawable.a42,R.drawable.a43,R.drawable.a44}};
-
-    public int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
-
-    public int[][] buttons ={{R.id.firstFirstBot,R.id.firstSecondBot,R.id.firstThirdBot,R.id.firstFourthBot},
-            {R.id.secondFirstBot,R.id.secondSecondBot,R.id.secondThirdBot,R.id.secondFourthBot},
+    private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
+    private int[][] images = matrixWithEverything.getImages();
+    private int[][] matrix = matrixWithEverything.getMatrix();
+    private int[][] buttons ={{R.id.firstFirstBot,R.id.firstSecondBot,R.id.firstThirdBot,R.id.firstFourthBot},
+           {R.id.secondFirstBot,R.id.secondSecondBot,R.id.secondThirdBot,R.id.secondFourthBot},
             {R.id.thirdFirstBot,R.id.thirdSecondBot,R.id.thirdThirdBot,R.id.thirdFourthBot},
-            {R.id.fourthFirstBot,R.id.fourthSecondBot,R.id.fourthThirdBot,R.id.fourthFourthBot}};
+           {R.id.fourthFirstBot,R.id.fourthSecondBot,R.id.fourthThirdBot,R.id.fourthFourthBot}};
 
-    MediaPlayer mediaPlayer;
-    Runnable sound = new Runnable() {
+    private   int count=1;
+    private String setText=null;
+    private int a;
+    private boolean forStepBot2=true;
+    private MediaPlayer mediaPlayer;
+    private Runnable sound = new Runnable() {
         @Override
         public void run() {
-
             mediaPlayer = MediaPlayer.create(getBaseContext(),R.raw.longfirst);
             mediaPlayer.setLooping(true);
             if (!mediaPlayer.isPlaying()){
@@ -148,13 +147,9 @@ public class FullscreenActivitybot extends AppCompatActivity {
         Thread forSound = new Thread(sound);
 
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
-        if (spref.getBoolean(SAVED_BOOL,false)){
-            forSound.start();}
+        if (spref.getBoolean(SAVED_BOOL,false)){forSound.start();}
 
-        findViewById(R.id.secondSecondBot).setEnabled(false);
-        findViewById(R.id.secondThirdBot).setEnabled(false);
-        findViewById(R.id.thirdSecondBot).setEnabled(false);
-        findViewById(R.id.thirdThirdBot).setEnabled(false);
+        setFourButtons(false);
 
         TextView textView =(TextView) findViewById(R.id.textView3Bot); //вывод текста, сообщающего, что следующим будет ходить бот
         try {
@@ -166,7 +161,6 @@ public class FullscreenActivitybot extends AppCompatActivity {
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
@@ -180,11 +174,10 @@ public class FullscreenActivitybot extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        random();
+        matrixWithEverything.random();
         vyvod();
 
         anim = AnimationUtils.loadAnimation(this, R.anim.anim);
-
 
         MobileAds.initialize(this, "ca-app-pub-5586713183085646~5422503179");
         AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
@@ -193,15 +186,12 @@ public class FullscreenActivitybot extends AppCompatActivity {
                     public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
                         NativeTemplateStyle styles = new
                                 NativeTemplateStyle.Builder().build();
-
                         TemplateView template = findViewById(R.id.my_templateBotGame);
                         template.setStyles(styles);
                         template.setNativeAd(unifiedNativeAd);
-
                     }
                 })
                 .build();
-
         adLoader.loadAd(new AdRequest.Builder().build());
     }
 
@@ -267,50 +257,6 @@ public class FullscreenActivitybot extends AppCompatActivity {
         }
     }
 
-    public  void random(){
-        Random random = new Random();
-        for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
-                int index1 = random.nextInt(i+1);
-                int index2 = random.nextInt(j+1);
-                int a=images[index1][index2];
-                int b=matrix[index1][index2];
-                images[index1][index2]=images[i][j];
-                matrix[index1][index2]=matrix[i][j];
-                images[i][j]=a;
-                matrix[i][j]=b;
-            }
-        }
-    }
-
-    public boolean usloviyeWin(int[][] matr){
-        try{
-            for (int j=0; j<4;j++){
-                if(matr[0][j]==matr[1][j]&&matr[2][j] == matr[3][j]&&matr[1][j]==matr[3][j]){
-                    return true;
-                }
-                else if(matr[j][0]==matr[j][1]&&matr[j][2] == matr[j][3]&&matr[j][1]==matr[j][3]){
-                    return true;
-                }
-                else if(matr[0][j]==matr[1][j]&&matr[0][j+1] == matr[1][j+1]&&matr[1][j]==matr[1][j+1]){
-                    return true;
-                }
-                else if(matr[1][j]==matr[2][j]&&matr[1][j+1] == matr[2][j+1]&&matr[2][j]==matr[2][j+1]){
-                    return true;
-                }
-                else if(matr[2][j]==matr[3][j]&&matr[2][j+1] == matr[3][j+1]&&matr[3][j]==matr[3][j+1]){
-                    return true;
-                }
-            }
-        }catch (Exception ignored){}
-        return false;
-    }
-
-    public  int count=1;
-public String setText=null;
-
-    int a;
-    boolean forStepBot2=true;
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -326,34 +272,20 @@ public String setText=null;
 
     public synchronized void talkBot(final View view) {
         Thread thread = new Thread(runnable);
-        if (count==1){
-            findViewById(R.id.secondSecondBot).setEnabled(true);
-            findViewById(R.id.secondThirdBot).setEnabled(true);
-            findViewById(R.id.thirdSecondBot).setEnabled(true);
-            findViewById(R.id.thirdThirdBot).setEnabled(true);}
+        if (count==1){setFourButtons(true);}
 
-        boolean bool=usloviyeWin(matrix);
+        boolean bool=matrixWithEverything.usloviyeWin(matrix);
 
         if (!bool){
             a=proverka(view.getId());
             if (idimage==0){ idimage=a;}
-            if (uslovieZam(a,idimage)){
+            if (matrixWithEverything.uslovieZam(a,idimage)){
                 thread.start();
                 count++;
             }else {
                 Toast.makeText(this, getString(R.string.condition), Toast.LENGTH_SHORT).show();}
             }
         uslovieokno();
-    }
-
-    public boolean uslovieZam(int a, int b){
-        return a / 10 == b / 10 || a % 10 == b % 10;
-    }
-
-    public int counter(int count){
-        if (count%2==0){
-            return 2;
-        }else {return 1;}
     }
 
     public int proverka(int id){
@@ -367,7 +299,6 @@ public String setText=null;
         return 0;}
 
     public int bot() {
-
         int[] aa = {0, 1, 2, 3};
         int[] bb = {0, 1, 2, 3};
         Random random = new Random();
@@ -385,16 +316,12 @@ public String setText=null;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int a = matrix[aa[i]][bb[j]];
-                if (uslovieZam(a, idimage)&&a!=88&&a!=77) {
+                if (matrixWithEverything.uslovieZam(a, idimage)&&a!=88&&a!=77) {
                     return a;
                 }
             }
         }
-        TextView textView = findViewById(R.id.textView3Bot);
-        textView.setText("Бот слеп");
         return 0;
-
-
     }
 
     public synchronized void stepBot(int a) {
@@ -429,7 +356,7 @@ public String setText=null;
     public synchronized void stepBot2(){
         final MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.cat3);
         int bota;
-        boolean bool = usloviyeWin(matrix);
+        boolean bool = matrixWithEverything.usloviyeWin(matrix);
         if (!bool) {
             bota = bot();
             for (int i1 = 0; i1 < 4; i1++) {
@@ -469,16 +396,16 @@ public String setText=null;
                 }
             }
         }
-        bool=usloviyeWin(matrix);
+        bool=matrixWithEverything.usloviyeWin(matrix);
         if (k==16){
             bool=true;
         }
         if (bool) {
-            if (counter(count - 1) == 1) {
+            if (matrixWithEverything.counter(count - 1) == 1) {
                 TextView textView = findViewById(R.id.textView3Bot);
                 try{textView.setText(getString(R.string.youWinbot));}catch (Exception e){}
                 forStepBot2=false;
-            } else if (counter(count - 1) == 2) {
+            } else if (matrixWithEverything.counter(count - 1) == 2) {
                 TextView textView = findViewById(R.id.textView3Bot);
                 try{textView.setText(getString(R.string.youLosebot));}catch (Exception e){}
             }
@@ -506,18 +433,18 @@ public String setText=null;
                 }
             }
         }
-        bool=usloviyeWin(matrix);
+        bool=matrixWithEverything.usloviyeWin(matrix);
         if (k==16){
             bool=true;
         }
         if (bool) {
-            if (counter(count - 1) == 1) {
+            if (matrixWithEverything.counter(count - 1) == 1) {
                 TextView textView = findViewById(R.id.textView3Bot);
                 try {
                     textView.setText(getString(R.string.youWin));
                 }catch (Exception e){}
                 setText = getString(R.string.youWin);
-            } else if (counter(count - 1) == 2) {
+            } else if (matrixWithEverything.counter(count - 1) == 2) {
                 TextView textView = findViewById(R.id.textView3Bot);
                 try{textView.setText(getString(R.string.youLose));}catch (Exception e){}
                 setText = getString(R.string.youLose);
@@ -556,6 +483,13 @@ public String setText=null;
         }
     }
 
+    private void setFourButtons(boolean bool){
+        findViewById(R.id.secondSecondBot).setEnabled(bool);
+        findViewById(R.id.secondThirdBot).setEnabled(bool);
+        findViewById(R.id.thirdSecondBot).setEnabled(bool);
+        findViewById(R.id.thirdThirdBot).setEnabled(bool);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -576,7 +510,6 @@ public String setText=null;
         try{
             mediaPlayer.start();}catch (Exception e){}
     }
-
 
     @Override
     public void onBackPressed() {

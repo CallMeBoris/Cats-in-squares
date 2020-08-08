@@ -17,8 +17,8 @@ import java.util.Locale;
 
 public class Language extends AppCompatActivity {
 
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,6 @@ public class Language extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
     }
-
-
 
     public void back(final View view){
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
@@ -38,8 +36,6 @@ public class Language extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void deu(View view){

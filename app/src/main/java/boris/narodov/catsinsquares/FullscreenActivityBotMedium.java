@@ -35,24 +35,25 @@ import java.util.Random;
  * status bar and navigation/system bar) with user interaction.
  */
 public class FullscreenActivityBotMedium extends AppCompatActivity {
-    Animation anim;
-    public int idimage=0;
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
+    private Animation anim;
+    private int idimage=0;
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
+    private int count=1;
+    private String setText=null;
+    private int a;
+    private boolean forStepBot2=true;
 
-    public int[][] images ={{R.drawable.a11,R.drawable.a12,R.drawable.a13,R.drawable.a14},
-            {R.drawable.a21,R.drawable.a22,R.drawable.a23,R.drawable.a24},
-            {R.drawable.a31,R.drawable.a32,R.drawable.a33,R.drawable.a34},
-            {R.drawable.a41,R.drawable.a42,R.drawable.a43,R.drawable.a44}};
+    private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
+    private int[][] images = matrixWithEverything.getImages();
+    private int[][] matrix = matrixWithEverything.getMatrix();
 
-    public int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
-
-    public int[][] buttons ={{R.id.firstFirstBotMedium,R.id.firstSecondBotMedium,R.id.firstThirdBotMedium,R.id.firstFourthBotMedium},
+    private int[][] buttons ={{R.id.firstFirstBotMedium,R.id.firstSecondBotMedium,R.id.firstThirdBotMedium,R.id.firstFourthBotMedium},
             {R.id.secondFirstBotMedium,R.id.secondSecondBotMedium,R.id.secondThirdBotMedium,R.id.secondFourthBotMedium},
             {R.id.thirdFirstBotMedium,R.id.thirdSecondBotMedium,R.id.thirdThirdBotMedium,R.id.thirdFourthBotMedium},
             {R.id.fourthFirstBotMedium,R.id.fourthSecondBotMedium,R.id.fourthThirdBotMedium,R.id.fourthFourthBotMedium}};
 
-MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
     Runnable sound = new Runnable() {
         @Override
         public void run() {
@@ -147,10 +148,7 @@ bundle=savedInstanceState;
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
-        findViewById(R.id.secondSecondBotMedium).setEnabled(false);
-        findViewById(R.id.secondThirdBotMedium).setEnabled(false);
-        findViewById(R.id.thirdSecondBotMedium).setEnabled(false);
-        findViewById(R.id.thirdThirdBotMedium).setEnabled(false);
+        setFourButtons(false);
 
         Thread forSound = new Thread(sound);
 
@@ -180,7 +178,7 @@ if (spref.getBoolean(SAVED_BOOL,false)){
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        random();
+        matrixWithEverything.random();
         vyvod();
 
         MobileAds.initialize(this, "ca-app-pub-5586713183085646~5422503179");
@@ -264,51 +262,6 @@ if (spref.getBoolean(SAVED_BOOL,false)){
                 }
     }
 
-    public  void random(){
-        Random random = new Random();
-        for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
-                int index1 = random.nextInt(i+1);
-                int index2 = random.nextInt(j+1);
-                int a=images[index1][index2];
-                int b=matrix[index1][index2];
-                images[index1][index2]=images[i][j];
-                matrix[index1][index2]=matrix[i][j];
-                images[i][j]=a;
-                matrix[i][j]=b;
-            }
-        }
-    }
-
-    public boolean usloviyeWin(int[][] matr){
-        try{
-            for (int j=0; j<4;j++){
-                if(matr[0][j]==matr[1][j]&&matr[2][j] == matr[3][j]&&matr[1][j]==matr[3][j]){
-                    return true;
-                }
-                else if(matr[j][0]==matr[j][1]&&matr[j][2] == matr[j][3]&&matr[j][1]==matr[j][3]){
-                    return true;
-                }
-                else if(matr[0][j]==matr[1][j]&&matr[0][j+1] == matr[1][j+1]&&matr[1][j]==matr[1][j+1]){
-                    return true;
-                }
-                else if(matr[1][j]==matr[2][j]&&matr[1][j+1] == matr[2][j+1]&&matr[2][j]==matr[2][j+1]){
-                    return true;
-                }
-                else if(matr[2][j]==matr[3][j]&&matr[2][j+1] == matr[3][j+1]&&matr[3][j]==matr[3][j+1]){
-                    return true;
-                }
-            }
-        }catch (Exception ignored){}
-        return false;
-    }
-
-    public  int count=1;
-    public String setText=null;
-
-    int a;
-
-    boolean forStepBot2=true;
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -322,37 +275,22 @@ if (spref.getBoolean(SAVED_BOOL,false)){
         }
     };
 
-
     public synchronized void talkBot(final View view) {
         Thread thread = new Thread(runnable);
         anim = AnimationUtils.loadAnimation(this, R.anim.anim);
-        if (count==1){
-            findViewById(R.id.secondSecondBotMedium).setEnabled(true);
-            findViewById(R.id.secondThirdBotMedium).setEnabled(true);
-            findViewById(R.id.thirdSecondBotMedium).setEnabled(true);
-            findViewById(R.id.thirdThirdBotMedium).setEnabled(true);}
+        if (count==1){setFourButtons(true);}
 
-        boolean bool=usloviyeWin(matrix);
+        boolean bool=matrixWithEverything.usloviyeWin(matrix);
         if (!bool){
             a=proverka(view.getId());
             if (idimage==0){ idimage=a;}
-            if (uslovieZam(a,idimage)){
+            if (matrixWithEverything.uslovieZam(a,idimage)){
                 thread.start();
                 count++;
             }else {
                 Toast.makeText(this, getString(R.string.condition), Toast.LENGTH_SHORT).show();}
         }
         okno();
-    }
-
-    public boolean uslovieZam(int a, int b){
-        return a / 10 == b / 10 || a % 10 == b % 10;
-    }
-
-    public int counter(int count){
-        if (count%2==0){
-            return 2;
-        }else {return 1;}
     }
 
     public int proverka(int id){
@@ -394,7 +332,7 @@ if (spref.getBoolean(SAVED_BOOL,false)){
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 int a = matrix[aa2[i]][bb2[j]];
-                if (uslovieZam(a, idimage)&&a!=0&&a!=1) {
+                if (matrixWithEverything.uslovieZam(a, idimage)&&a!=0&&a!=1) {
                     return a;
                 }
             }
@@ -402,7 +340,7 @@ if (spref.getBoolean(SAVED_BOOL,false)){
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int a = matrix[aa[i]][bb[j]];
-                if (uslovieZam(a, idimage)&&a!=0&&a!=1) {
+                if (matrixWithEverything.uslovieZam(a, idimage)&&a!=0&&a!=1) {
                     return a;
                 }
             }
@@ -411,12 +349,6 @@ if (spref.getBoolean(SAVED_BOOL,false)){
         textView.setText("Бот слеп");
         return 0;
     }
-
-
-
-
-
-
 
     public synchronized void stepBot(final int a) { //Метод, в котором происходит шаг пользователя и бота
                 MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.cat3);
@@ -460,7 +392,7 @@ if (spref.getBoolean(SAVED_BOOL,false)){
     public synchronized void stepBot2(){
         final MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.cat3); //создание звука хода бота
         int bota; //переменная в которую запишется ход бота
-        boolean bool = usloviyeWin(matrix); //запись в переменную проверки условия победы
+        boolean bool = matrixWithEverything.usloviyeWin(matrix); //запись в переменную проверки условия победы
 
         if (!bool) {
             bota = bot(); //записываем ход бота
@@ -505,16 +437,16 @@ if (spref.getBoolean(SAVED_BOOL,false)){
                 }
             }
         }
-        bool=usloviyeWin(matrix);
+        bool=matrixWithEverything.usloviyeWin(matrix);
         if (k==16){
             bool=true;
         }
         if (bool) {
-            if (counter(count - 1) == 1) {
+            if (matrixWithEverything.counter(count - 1) == 1) {
                 TextView textView = findViewById(R.id.textView3BotMedium);
                 try{textView.setText(getString(R.string.youWin));}catch (Exception e){}
                 setText = getString(R.string.youWin);
-            } else if (counter(count - 1) == 2) {
+            } else if (matrixWithEverything.counter(count - 1) == 2) {
                 TextView textView = findViewById(R.id.textView3BotMedium);
                 try{textView.setText(getString(R.string.youLose));}catch (Exception e){}
                 setText = getString(R.string.youLose);
@@ -563,21 +495,27 @@ if (spref.getBoolean(SAVED_BOOL,false)){
                 }
             }
         }
-        bool=usloviyeWin(matrix);
+        bool=matrixWithEverything.usloviyeWin(matrix);
         if (k==16){
             bool=true;
         }
         if (bool) {
             TextView textView = findViewById(R.id.textView3BotMedium);
-            if (counter(count - 1) == 1) {
+            if (matrixWithEverything.counter(count - 1) == 1) {
                 try{textView.setText(getText(R.string.youWinbot));}catch (Exception e){}
                 forStepBot2=false;
-            }else if (counter(count - 1) == 2) {
+            }else if (matrixWithEverything.counter(count - 1) == 2) {
                try{ textView.setText(getText(R.string.youLosebot));}catch (Exception e){}
             }
         }
     }
 
+    private void setFourButtons(boolean bool){
+        findViewById(R.id.secondSecondBotMedium).setEnabled(bool);
+        findViewById(R.id.secondThirdBotMedium).setEnabled(bool);
+        findViewById(R.id.thirdSecondBotMedium).setEnabled(bool);
+        findViewById(R.id.thirdThirdBotMedium).setEnabled(bool);
+    }
 
     @Override
     protected void onDestroy() {
