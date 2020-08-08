@@ -1,7 +1,5 @@
 package boris.narodov.catsinsquares;
 
-import android.widget.ImageButton;
-
 import java.util.Random;
 
 public class MatrixWithEverything {
