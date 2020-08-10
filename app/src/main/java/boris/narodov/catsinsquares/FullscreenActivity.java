@@ -25,8 +25,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 
-import java.util.Random;
-
 import boris.google.android.ads.nativetemplates.NativeTemplateStyle;
 import boris.google.android.ads.nativetemplates.TemplateView;
 

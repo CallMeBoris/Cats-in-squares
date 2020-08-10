@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -281,7 +282,6 @@ enabled(true);
 
 
     public synchronized void talkBot(final View view) {
-        Thread thread = new Thread(runnable);
         anim = AnimationUtils.loadAnimation(this, R.anim.anim);
         if (count==1){setFourButtons(true);}
 
@@ -290,7 +290,19 @@ enabled(true);
             a=proverka(view.getId());
             if (idimage==0){ idimage=a;}
             if (matrixWithEverything.uslovieZam(a,idimage)){
-                thread.start();
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+                    Thread thread = new Thread(runnable);
+                    thread.start();}
+                else {
+                    stepBot(a);
+                    enabled(false);
+                    long ctime = System.currentTimeMillis();
+                    while (System.currentTimeMillis() - ctime < 200) ;
+                    if (forStepBot2) {
+                        stepBot2();
+                    }
+                    enabled(true);
+                }
                 count++;
             }else {
                 String s=""+getString(R.string.condition);

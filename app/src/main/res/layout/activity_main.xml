@@ -3,22 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="boris.narodov.catsinsquares.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    >
 
     <ImageView
-        android:id="@+id/backgroundMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/background"
-        android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/backgroundGameOnline"
+        app:srcCompat="@drawable/backgr1"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
 
         <TableRow
             android:layout_width="0dp"
@@ -28,9 +31,11 @@
             <Button
                 android:id="@+id/gameBot"
                 style="@style/buttonsMenu"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
+                android:minHeight="70dp"
                 android:onClick="gameBot"
                 android:text="@string/play" />
+
         </TableRow>
 
         <TableRow
@@ -40,6 +45,7 @@
 
             <Button
                 android:id="@+id/game"
+                android:minHeight="70dp"
                 style="@style/buttonsMenu"
                 android:onClick="game"
                 android:text="@string/two_players" />
@@ -52,6 +58,7 @@
 
             <Button
                 android:id="@+id/language"
+                android:minHeight="70dp"
                 style="@style/buttonsMenu"
                 android:onClick="language"
                 android:text="@string/language" />
@@ -65,8 +72,22 @@
             <Button
                 android:id="@+id/rules"
                 style="@style/buttonsMenu"
+                android:minHeight="70dp"
                 android:text="@string/rules"
                 android:onClick="rules"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <Button
+                android:id="@+id/about"
+                android:minHeight="70dp"
+                style="@style/buttonsMenu"
+                android:text="@string/BtnAbout"
+                android:onClick="about"/>
         </TableRow>
 
         <TableRow
@@ -82,8 +103,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="3"
                 android:text="@string/sound_on"
-                android:textColor="#FFFF"
-                android:textSize="22sp"
+                android:textColor="#000080"
+                android:textSize="28sp"
                 android:fontFamily="@font/dalmata_dream_normal_109866"
                 android:textStyle="italic" />
 

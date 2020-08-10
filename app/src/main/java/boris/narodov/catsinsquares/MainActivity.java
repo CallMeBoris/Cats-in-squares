@@ -88,6 +88,15 @@ public void rules(View view){
     finish();
 }
 
+    public void about(View view){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        if (isSound()){
+            mp.start();}
+        Intent intent = new Intent(this, AboutTheAuthors.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     public boolean isSound() {
 CheckBox sound = findViewById(R.id.sound);

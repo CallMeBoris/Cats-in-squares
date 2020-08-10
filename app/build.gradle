@@ -23,6 +23,12 @@ android {
         }
     }
 
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
 }
 
 apply plugin: 'com.android.application'

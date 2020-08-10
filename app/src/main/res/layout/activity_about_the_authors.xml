@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutTheAuthors">
+
+    <ImageView
+        android:id="@+id/backgroundGameOnline"
+        app:srcCompat="@drawable/backgr1"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bitmap"
+            android:layout_margin="15dp">
+
+            <TextView
+                android:id="@+id/aboutFirst"
+                android:lineSpacingExtra="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:text="@string/graph"
+                android:textColor="#000080"
+                android:textStyle="italic|bold"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints"/>
+
+            <TextView
+                android:id="@+id/aboutSecond"
+                android:lineSpacingExtra="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:text="@string/OldGraph"
+                android:textColor="#000080"
+                android:textStyle="italic|bold"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints"/>
+
+            <TextView
+                android:id="@+id/aboutThird"
+                android:lineSpacingExtra="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:text="@string/audio"
+                android:textColor="#000080"
+                android:textStyle="italic|bold"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/aboutFourth"
+                android:lineSpacingExtra="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:text="@string/translate"
+                android:textColor="#000080"
+                android:textStyle="italic|bold"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints" />
+
+
+            <Button
+                android:id="@+id/buttonExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:onClick="exitMenu"
+                style="@style/buttonsMenuExit"/>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

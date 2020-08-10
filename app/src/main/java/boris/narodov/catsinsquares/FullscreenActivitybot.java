@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -47,12 +48,12 @@ public class FullscreenActivitybot extends AppCompatActivity {
             {R.id.thirdFirstBot,R.id.thirdSecondBot,R.id.thirdThirdBot,R.id.thirdFourthBot},
            {R.id.fourthFirstBot,R.id.fourthSecondBot,R.id.fourthThirdBot,R.id.fourthFourthBot}};
 
-    private   int count=1;
+    private int count=1;
     private String setText=null;
-    private int a;
-    private boolean forStepBot2=true;
+    public int a;
+    public boolean forStepBot2=true;
     private MediaPlayer mediaPlayer;
-    private Runnable sound = new Runnable() {
+    private  Runnable sound = new Runnable() {
         @Override
         public void run() {
             mediaPlayer = MediaPlayer.create(getBaseContext(),R.raw.longfirst);
@@ -147,7 +148,9 @@ public class FullscreenActivitybot extends AppCompatActivity {
         Thread forSound = new Thread(sound);
 
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
-        if (spref.getBoolean(SAVED_BOOL,false)){forSound.start();}
+        if (spref.getBoolean(SAVED_BOOL,false)){
+            forSound.start();
+        }
 
         setFourButtons(false);
 
@@ -177,7 +180,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
         matrixWithEverything.random();
         vyvod();
 
-        anim = AnimationUtils.loadAnimation(this, R.anim.anim);
+        try {anim = AnimationUtils.loadAnimation(this, R.anim.anim);}catch (Exception e){}
 
         MobileAds.initialize(this, "ca-app-pub-5586713183085646~5422503179");
         AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
@@ -252,14 +255,15 @@ public class FullscreenActivitybot extends AppCompatActivity {
         for (int i =0; i<4;i++){
             for (int j =0; j<4;j++) {
                 ImageButton imageButton = findViewById(buttons[i][j]);
-                imageButton.setImageResource(images[i][j]);
+                try{imageButton.setImageResource(images[i][j]);}catch (Exception e){}
             }
         }
     }
 
-    Runnable runnable = new Runnable() {
+     Runnable runnable = new Runnable() {
         @Override
         public void run() {
+            try{
             stepBot(a);
             enabled(false);
             long ctime = System.currentTimeMillis();
@@ -267,11 +271,11 @@ public class FullscreenActivitybot extends AppCompatActivity {
             if (forStepBot2){
             stepBot2();}
             enabled(true);
+                }catch (Exception e){}
         }
     };
 
     public synchronized void talkBot(final View view) {
-        Thread thread = new Thread(runnable);
         if (count==1){setFourButtons(true);}
 
         boolean bool=matrixWithEverything.usloviyeWin(matrix);
@@ -280,7 +284,19 @@ public class FullscreenActivitybot extends AppCompatActivity {
             a=proverka(view.getId());
             if (idimage==0){ idimage=a;}
             if (matrixWithEverything.uslovieZam(a,idimage)){
-                thread.start();
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+                    Thread thread = new Thread(runnable);
+                    thread.start();}
+                else {
+                    stepBot(a);
+                    enabled(false);
+                    long ctime = System.currentTimeMillis();
+                    while (System.currentTimeMillis() - ctime < 200) ;
+                    if (forStepBot2) {
+                        stepBot2();
+                    }
+                    enabled(true);
+                }
                 count++;
             }else {
                 Toast.makeText(this, getString(R.string.condition), Toast.LENGTH_SHORT).show();}
@@ -337,10 +353,10 @@ public class FullscreenActivitybot extends AppCompatActivity {
                         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
                         if (spref.getBoolean(SAVED_BOOL,false)){
                             mp.start();}
-                        imageButtonExample.setImageResource(b);
+                        try{imageButtonExample.setImageResource(b);}catch (Exception e){}
                         TextView textView = findViewById(R.id.textView3Bot);
                         try{textView.setText(getString(R.string.blueGo));}catch (Exception e){}
-                        images[i][j] = R.drawable.firstplayer;
+                        try{images[i][j] = R.drawable.firstplayer;}catch (Exception e){}
                         ImageButton enabled = findViewById(buttons[i][j]);
                         try{enabled.startAnimation(anim);}catch(Exception e){}
                         idimage = a;
@@ -370,9 +386,9 @@ public class FullscreenActivitybot extends AppCompatActivity {
                         ImageButton imageButtonExample = findViewById(R.id.imageButton29Bot);
                         try{imageButtonExample.setImageResource(b5);
                         imageButtonExample.startAnimation(anim);}catch(Exception e){}
-                        images[i1][j1] = R.drawable.secondplayer;
+                        try{images[i1][j1] = R.drawable.secondplayer;}catch (Exception e){}
                         ImageButton enabled2 = findViewById(buttons[i1][j1]);
-                        try{enabled2.startAnimation(anim);}catch(Exception e){}
+                        try{enabled2.startAnimation(anim);}catch(Exception e){vyvod();}
                         TextView textView = findViewById(R.id.textView3Bot);
                         try{textView.setText(getString(R.string.redGo));}catch (Exception e){}
                         idimage = bota;
@@ -455,7 +471,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(FullscreenActivitybot.this, R.style.AlertDialogCustom);
             builder.setTitle(setText);
             builder.setMessage(getString(R.string.Playagain));
-            builder.setIcon(R.drawable.logo);
+            try{builder.setIcon(R.drawable.logo);}catch (Exception e){}
             builder.setCancelable(false);
             builder.setNegativeButton(getString(R.string.yes),
                     new DialogInterface.OnClickListener() {

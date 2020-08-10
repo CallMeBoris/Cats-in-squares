@@ -10,12 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AboutTheAuthors"></activity>
         <activity
             android:name=".Real_online"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/gameName"
             android:screenOrientation="locked"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:launchMode="standard"

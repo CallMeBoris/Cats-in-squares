@@ -12,12 +12,12 @@
          TextureView, etc. -->
 
     <ImageView
-        android:id="@+id/backgroundGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/background"
-        android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/backgroundGameOnline"
+        app:srcCompat="@drawable/backgr1"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/fullscreen_content"
@@ -72,6 +72,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1">
 
                 <ImageButton
@@ -106,6 +107,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginBottom="5dp"
                 >
 
                 <ImageButton
@@ -139,7 +141,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="5dp">
 
                 <ImageButton
                     android:id="@+id/thirdFirst"

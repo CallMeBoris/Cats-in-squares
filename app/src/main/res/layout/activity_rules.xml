@@ -9,13 +9,12 @@
     >
 
     <ImageView
-        android:id="@+id/backgroundMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/background"
-        android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints" />
-
+        android:id="@+id/backgroundGameOnline"
+        app:srcCompat="@drawable/backgr1"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +23,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/bitmap"
+            android:layout_margin="10dp">
 
             <TextView
                 android:id="@+id/rulesFirst"
@@ -34,7 +35,7 @@
                 android:layout_margin="20dp"
                 android:fontFamily="@font/labor_union_regular"
                 android:text="@string/rulesFirst"
-                android:textColor="#FFF"
+                android:textColor="#000080"
                 android:textStyle="italic|bold"
                 tools:ignore="MissingConstraints" />
 
@@ -54,7 +55,7 @@
                 android:layout_margin="20dp"
                 android:fontFamily="@font/labor_union_regular"
                 android:text="@string/rulesSecond"
-                android:textColor="#FFF"
+                android:textColor="#000080"
                 android:textStyle="italic|bold"
                 tools:ignore="MissingConstraints" />
 
@@ -100,7 +101,7 @@
                 android:layout_margin="20dp"
                 android:fontFamily="@font/labor_union_regular"
                 android:text="@string/rulesThird"
-                android:textColor="#FFF"
+                android:textColor="#000080"
                 android:textStyle="italic|bold"
                 tools:ignore="MissingConstraints" />
 

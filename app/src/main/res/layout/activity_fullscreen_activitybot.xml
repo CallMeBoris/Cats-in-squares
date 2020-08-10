@@ -10,13 +10,14 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+
     <ImageView
-        android:id="@+id/backgroundGameBot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/background"
-        android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/backgroundGameOnline"
+        app:srcCompat="@drawable/backgr1"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/fullscreen_content"

@@ -51,9 +51,21 @@ The first player draws any card from the edge of the field, i.e. four cards from
 
     <string name="title_activity_fullscreen_bot_hard" translatable="false">FullscreenActivityBotHard</string>
 
-    <string name="title_activity_fullscreen_online">FullscreenActivityOnline</string>
+    <string name="title_activity_fullscreen_online" translatable="false">FullscreenActivityOnline</string>
 
-    <string name="title_activity_fullscreen_online2">FullscreenActivityOnline2</string>
+    <string name="title_activity_fullscreen_online2" translatable="false">FullscreenActivityOnline2</string>
 
-    <string name="title_activity_real_online">Real_online</string>
+    <string name="title_activity_real_online" translatable="false">Real_online</string>
+    <string name="graph"><font size="20">Design:</font>
+        \n \n \t Cards: Romanov Vladimir. Instagram: @art.romanovvlm
+        \n \n \t Background: Ivanova Alina</string>
+    <string name="OldGraph"><font size="20">\nOld design version:</font>
+        \n\n \t Gordienko Irina</string>
+    <string name="audio"><font size="20">\nSound accompaniment:</font>
+        \n\n \t Shohin Dmitry. Vk: @shohinizmth</string>
+    <string name="translate"><font size="20">\nTranslation into another language:</font>
+        \n\n \t English, German: Gordienko Irina
+        \n\n \t Ukrainian: Matvieiev Oleksandr. Telegram: @unicorn_porn</string>
+    <string name="BtnAbout">About the authors</string>
+
 </resources>

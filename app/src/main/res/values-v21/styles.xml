@@ -6,9 +6,21 @@
         <item name="colorPrimary">#1e88e5</item>
         <item name="colorPrimaryDark">#311b92</item>
         <item name="android:textColorPrimary">#e0f7fa</item>
-        <item name="android:windowBackground">#4dd0e1</item>
+
+<!--        <item name="android:windowBackground">@drawable/bitmap</item>-->
+<!--        <item name="android:listViewStyle">@style/TransparentListView</item>-->
+<!--        <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>-->
+
         <item name="android:navigationBarColor">#0288d1</item>
         <item name="colorAccent">#311b92</item>
+    </style>
+
+    <style name="TransparentListView" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+    </style>
+
+    <style name="TransparentExpandableListView" parent="@android:style/Widget.ExpandableListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -16,20 +28,24 @@
         <item name="colorPrimary">#1e88e5</item>
         <item name="colorPrimaryDark">#311b92</item>
         <item name="android:textColorPrimary">#e0f7fa</item>
-        <item name="android:windowBackground">#4dd0e1</item>
+
+<!--        <item name="android:windowBackground">@drawable/bitmap</item>-->
+<!--        <item name="android:listViewStyle">@style/TransparentListView</item>-->
+<!--        <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>-->
+
         <item name="android:navigationBarColor">#0288d1</item>
     </style>
 
     <style name="buttonsMenu">
-        <item name="android:elevation">16dp</item>
+        <item name="android:elevation">10dp</item>
         <item name="android:stateListAnimator">@null</item>
-        <item name="android:translationZ">14dp</item>
+        <item name="android:translationZ">8dp</item>
         <item name="android:background">@drawable/button_main</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginLeft">110dp</item>
-        <item name="android:layout_marginRight">110dp</item>
-        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_marginLeft">100dp</item>
+        <item name="android:layout_marginRight">100dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center|center_horizontal|center_vertical</item>
         <item name="android:textStyle">bold|italic</item>
