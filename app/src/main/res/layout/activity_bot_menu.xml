@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="boris.narodov.catsinsquares.Language">
+    tools:context="boris.narodov.catsinsquares.BotMenu">
 
     <ImageView
         android:id="@+id/backgroundGameOnline"
@@ -72,6 +72,31 @@
                 android:minWidth="200dp"
                 android:minHeight="50dp"
                 tools:ignore="OnClick" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <boris.narodov.catsinsquares.OutlineTextView
+                android:theme="@style/MyCheckBox"
+                android:gravity="center"
+                app:textStrokeWidth="5sp"
+                app:textStrokeColor="#FFFFFF"
+                android:id="@+id/botFirstStep"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="3"
+                android:text="@string/bot_first"
+                android:textColor="#000080"
+                android:textSize="28sp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:textStyle="italic" />
+
         </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

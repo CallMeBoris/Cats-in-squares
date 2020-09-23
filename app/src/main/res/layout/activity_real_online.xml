@@ -42,7 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginLeft="7dp"
-                android:background="@drawable/wooden">
+                android:background="@drawable/wooden2">
 
                 <TableRow
                     android:layout_width="0dp"
@@ -202,12 +202,7 @@
                         android:onClick="talk"/>
                 </TableRow>
 
-                <boris.google.android.ads.nativetemplates.TemplateView
-                    android:id="@+id/my_templateGameRealOnline"
-                    app:gnt_template_type="@layout/gnt_small_template_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    />
+
 
             </TableLayout>
             <LinearLayout

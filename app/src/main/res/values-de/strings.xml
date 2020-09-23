@@ -38,4 +38,16 @@
     <string name="rulesThird">Wie wird gespielt:
         Der erste Spieler zieht eine beliebige Karte vom Spielfeldrand, d.h. im ersten Zug dürfen vier Karten aus der Spielfeldmitte nicht gespielt werden. Die vom Spielfeld gezogene Karte bestimmt das weitere Vorgehen für den zweiten Spieler. Jetzt kann der zweite Spieler nur die Karte ziehen, auf der der Ort des Hauses oder der Katzenkram mit dem Ort oder Katzenkram auf der vom ersten Spieler gezogenen Karte übereinstimmen. Die neu gezogene Karte bestimmt jetzt das weitere Vorgehen für den ersten Spieler.
         \nSo geht das Spiel weiter bis einer der Spieler eine der Siegbedingungen erfüllt.</string>
+
+    <string name="graph"><font size="20">Graphisches design:</font>
+        \n \n \t Karten: Romanov Vladimir. Instagram: @art.romanovvlm
+        \n \n \t Hintergrund: Ivanova Alina
+        \n \n \t Alte Designversion: Gordienko Irina</string>
+    <string name="audio"><font size="20">\nSound design:</font>
+        \n\n \t Shohin Dmitry. Vk: @shohinizmth</string>
+    <string name="translate"><font size="20">\nÜbersetzung:</font>
+        \n\n \t Deutsch, Englisch: Gordienko Irina
+        \n\n \t Ukrainisch: Matvieiev Oleksandr. Telegram: @unicorn_porn</string>
+    <string name="BtnAbout">Credits</string>
+    <string name="bot_first">Bot beginnt das Spiel</string>
 </resources>

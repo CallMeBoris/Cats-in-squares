@@ -35,7 +35,7 @@ Cat stuff: bowl, mouse, cat bed, carrier.</string>
 1. Completely fill a vertical or horizontal row on the playing field with 4 cat cards of your color.
 \n2. Form a 2x2 square on the playing field with 4 cat cards of your color.
 \n3. Fill the playing field with cat cards so that the opponent cannot make another move.</string>
-    <string name="rulesThird">How to play:/n
+    <string name="rulesThird">How to play:\n
 The first player draws any card from the edge of the field, i.e. four cards from the center of the field may not be played on the first move. The card drawn from the field determines the further actions of the second player. Now the second player can only draw the card on which the location of the house or the cat\'s stuff matches the place or cat\'s stuff displayed on the card drawn by the first player. The newly drawn card now determines the further actions of the first player.
         \nThe game continues until one of players meets one of victory conditions.
 </string>
@@ -56,16 +56,17 @@ The first player draws any card from the edge of the field, i.e. four cards from
     <string name="title_activity_fullscreen_online2" translatable="false">FullscreenActivityOnline2</string>
 
     <string name="title_activity_real_online" translatable="false">Real_online</string>
-    <string name="graph"><font size="20">Design:</font>
+    <string name="graph"><font size="20">Graphic design:</font>
         \n \n \t Cards: Romanov Vladimir. Instagram: @art.romanovvlm
-        \n \n \t Background: Ivanova Alina</string>
-    <string name="OldGraph"><font size="20">\nOld design version:</font>
-        \n\n \t Gordienko Irina</string>
-    <string name="audio"><font size="20">\nSound accompaniment:</font>
+        \n \n \t Background: Ivanova Alina
+        \n \n \t Old design version: Gordienko Irina</string>
+    <string name="audio"><font size="20">\nSound design:</font>
         \n\n \t Shohin Dmitry. Vk: @shohinizmth</string>
-    <string name="translate"><font size="20">\nTranslation into another language:</font>
+    <string name="translate"><font size="20">\nTranslation:</font>
         \n\n \t English, German: Gordienko Irina
         \n\n \t Ukrainian: Matvieiev Oleksandr. Telegram: @unicorn_porn</string>
-    <string name="BtnAbout">About the authors</string>
+    <string name="BtnAbout">Credits</string>
+
+    <string name="bot_first">Bot starts the game</string>
 
 </resources>

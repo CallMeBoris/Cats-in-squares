@@ -26,10 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,33 +35,36 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
-
-import boris.google.android.ads.nativetemplates.NativeTemplateStyle;
-import boris.google.android.ads.nativetemplates.TemplateView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class Real_online extends AppCompatActivity {
-    SharedPreferences spref;
-    final String SAVED_BOOL = "saved_bool";
-    final String SAVED_BOOL2 = "saved_bool2";
-    public int idimage=0;
-    Animation anim;
-    public String firstPlayer;
-    public String secondPlayer;
-    public ArrayList<String> players = new ArrayList<>();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("OnlineGame");
-    String matrixtoString="";
-    DatabaseReference image = database.getReference("OnlineGameImage");
-    DatabaseReference player = database.getReference("playerName");
-    public boolean isMove;
-
-
-    HashMap<Integer,Integer> matrixImage = new HashMap<>();
+    private SharedPreferences spref;
+    private final String SAVED_BOOL = "saved_bool";
+    private final String SAVED_BOOL2 = "saved_bool2";
+    private int idimage=0;
+    private Animation anim;
+    private String firstPlayer;
+    private String secondPlayer;
+    private ArrayList<String> players = new ArrayList<>();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("OnlineGame");
+    private String matrixtoString="";
+    private DatabaseReference image = database.getReference("OnlineGameImage");
+    private DatabaseReference player = database.getReference("playerName");
+    private boolean isMove;
+    private HashMap<Integer,Integer> matrixImage = new HashMap<>();
+    private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
+    private int[][] matrix=matrixWithEverything.getMatrix();
+    private int[][] buttons ={{R.id.firstFirstRealOnline,R.id.firstSecondRealOnline,R.id.firstThirdRealOnline,R.id.firstFourthRealOnline},
+            {R.id.secondFirstRealOnline,R.id.secondSecondRealOnline,R.id.secondThirdRealOnline,R.id.secondFourthRealOnline},
+            {R.id.thirdFirstRealOnline,R.id.thirdSecondRealOnline,R.id.thirdThirdRealOnline,R.id.thirdFourthRealOnline},
+            {R.id.fourthFirstRealOnline,R.id.fourthSecondRealOnline,R.id.fourthThirdRealOnline,R.id.fourthFourthRealOnline}};
+    private MediaPlayer mediaPlayer;
+    private static int SIGN_IN_CODE = 1;
+    private String namePlayer;
 
     public void put(){
         matrixImage.put(11,R.drawable.a11);
@@ -88,19 +87,9 @@ public class Real_online extends AppCompatActivity {
         matrixImage.put(88,R.drawable.secondplayer);
     }
 
-
-    private int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
-
-    private int[][] buttons ={{R.id.firstFirstRealOnline,R.id.firstSecondRealOnline,R.id.firstThirdRealOnline,R.id.firstFourthRealOnline},
-            {R.id.secondFirstRealOnline,R.id.secondSecondRealOnline,R.id.secondThirdRealOnline,R.id.secondFourthRealOnline},
-            {R.id.thirdFirstRealOnline,R.id.thirdSecondRealOnline,R.id.thirdThirdRealOnline,R.id.thirdFourthRealOnline},
-            {R.id.fourthFirstRealOnline,R.id.fourthSecondRealOnline,R.id.fourthThirdRealOnline,R.id.fourthFourthRealOnline}};
-
-    MediaPlayer mediaPlayer;
     Runnable sound = new Runnable() {
         @Override
         public void run() {
-
             mediaPlayer = MediaPlayer.create(getBaseContext(),R.raw.longfirst);
             mediaPlayer.setLooping(true);
             if (!mediaPlayer.isPlaying()){
@@ -179,8 +168,6 @@ public class Real_online extends AppCompatActivity {
     };
 
 
-    private static int SIGN_IN_CODE = 1;
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -200,7 +187,7 @@ public class Real_online extends AppCompatActivity {
         setContentView(R.layout.activity_real_online);
 
         idimage=0;
-        allButtons(false);
+        //allButtons(false);
 
         TextView textView =(TextView) findViewById(R.id.textViewRealOnline);
         try {
@@ -248,28 +235,9 @@ public class Real_online extends AppCompatActivity {
 
         anim = AnimationUtils.loadAnimation(this, R.anim.anim);
 
-        MobileAds.initialize(this, "ca-app-pub-5586713183085646~5422503179");
-        AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
-                    @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        NativeTemplateStyle styles = new
-                                NativeTemplateStyle.Builder().build();
-
-                        TemplateView template = findViewById(R.id.my_templateGameRealOnline);
-                        template.setStyles(styles);
-                        template.setNativeAd(unifiedNativeAd);
-
-                    }
-                })
-                .build();
-
-        adLoader.loadAd(new AdRequest.Builder().build());
-
 //D:\ProgramFiles\Nox\bin\nox_adb.exe connect 127.0.0.1:62001
     }
 
-    String namePlayer;
 private void makeGame(){
     try{
 namePlayer = FirebaseAuth.getInstance().getCurrentUser().getEmail();
@@ -285,8 +253,8 @@ namePlayer = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 try{
     if (namePlayer.equals(firstPlayer)){
         isMove = true;
-        allButtons(isMove);
-        random();
+        //allButtons(isMove);
+        matrixWithEverything.random();
         vyvod();
         findViewById(R.id.secondSecondRealOnline).setEnabled(false);
         findViewById(R.id.secondThirdRealOnline).setEnabled(false);
@@ -303,7 +271,7 @@ try{
 try {
     if (namePlayer.equals(secondPlayer)) {
         isMove = false;
-        allButtons(isMove);
+        //allButtons(isMove);
         read();
     }
 }catch (Exception e){}
@@ -406,41 +374,6 @@ public void checkUser(){
         }
     }
 
-    public  void random(){
-        Random random = new Random();
-        for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
-                int index1 = random.nextInt(i+1);
-                int index2 = random.nextInt(j+1);
-                int b=matrix[index1][index2];
-                matrix[index1][index2]=matrix[i][j];
-                matrix[i][j]=b;
-            }
-        }
-    }
-
-    public boolean usloviyeWin(int[][] matr){
-        try{
-            for (int j=0; j<4;j++){
-                if(matr[0][j]==matr[1][j]&&matr[2][j] == matr[3][j]&&matr[1][j]==matr[3][j]){
-                    return true;
-                }
-                else if(matr[j][0]==matr[j][1]&&matr[j][2] == matr[j][3]&&matr[j][1]==matr[j][3]){
-                    return true;
-                }
-                else if(matr[0][j]==matr[1][j]&&matr[0][j+1] == matr[1][j+1]&&matr[1][j]==matr[1][j+1]){
-                    return true;
-                }
-                else if(matr[1][j]==matr[2][j]&&matr[1][j+1] == matr[2][j+1]&&matr[2][j]==matr[2][j+1]){
-                    return true;
-                }
-                else if(matr[2][j]==matr[3][j]&&matr[2][j+1] == matr[3][j+1]&&matr[3][j]==matr[3][j+1]){
-                    return true;
-                }
-            }
-        }catch (Exception ignored){}
-        return false;
-    }
     String setText=null;
     private  int count=1;
 
@@ -459,13 +392,13 @@ public void checkUser(){
 //            findViewById(R.id.thirdSecondRealOnline).setEnabled(true);
 //            findViewById(R.id.thirdThirdRealOnline).setEnabled(true);}
 
-        boolean bool=usloviyeWin(matrix);
+        boolean bool=matrixWithEverything.usloviyeWin(matrix);
         if (!bool) {
             a = proverka(view.getId());
             if (idimage == 0) {
                 idimage = a;
             }
-            if (uslovieZam(a, idimage)) {
+            if (matrixWithEverything.uslovieZam(a, idimage)) {
                 step(a, count);
                 count++;
                 idimage = a;//комментить когда бот
@@ -533,7 +466,7 @@ read();
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 isMove = !isMove;
-                allButtons(isMove);
+                //allButtons(isMove);
                 idimage = dataSnapshot.getValue(Integer.class);
                 ImageButton imageButtonExample = findViewById(R.id.imageButton29RealOnline);
                 try{imageButtonExample.startAnimation(anim);
@@ -560,16 +493,6 @@ read();
 
             }
         });
-    }
-
-    public boolean uslovieZam(int a, int b){
-        return a / 10 == b / 10 || a % 10 == b % 10;
-    }
-
-    public int counter(int count){
-        if (count%2==0){
-            return 2;
-        }else {return 1;}
     }
 
     public int proverka(int id){
@@ -605,10 +528,10 @@ read();
                     }
                     myRef.push().setValue(matrixtoString);
                     matrixtoString="";
-                    if (usloviyeWin(matrix)) {
-                        if (counter(count) == 1) {
+                    if (matrixWithEverything.usloviyeWin(matrix)) {
+                        if (matrixWithEverything.counter(count) == 1) {
                             try{textView.setText(getString(R.string.redWin));}catch (Exception e){}
-                        } else if (counter(count) == 2) {
+                        } else if (matrixWithEverything.counter(count) == 2) {
                             try{textView.setText(R.string.blueWin);}catch (Exception e){}
                         }
                     }
@@ -634,10 +557,10 @@ read();
                     }
                     myRef.push().setValue(matrixtoString);
                     matrixtoString="";
-                    if (usloviyeWin(matrix)) {
-                        if (counter(count) == 1) {
+                    if (matrixWithEverything.usloviyeWin(matrix)) {
+                        if (matrixWithEverything.counter(count) == 1) {
                             try{textView.setText(getString(R.string.redWin));}catch (Exception e){}
-                        } else if (counter(count) == 2) {
+                        } else if (matrixWithEverything.counter(count) == 2) {
                             try{textView.setText(getString(R.string.blueWin));}catch (Exception e){}
                         }
                     }
@@ -670,18 +593,18 @@ read();
                 }
             }
         }
-        bool=usloviyeWin(matrix);
+        bool=matrixWithEverything.usloviyeWin(matrix);
         if (k==16){
             bool=true;
         }
         if (bool){
-            if (counter(count-1)==1){
+            if (matrixWithEverything.counter(count-1)==1){
                 TextView textView = findViewById(R.id.textView3);
                 try{
                 textView.setText(getString(R.string.redWin));}catch (Exception e){}
                 setText=getString(R.string.redWin);
 
-            }else if (counter(count-1)==2){
+            }else if (matrixWithEverything.counter(count-1)==2){
                 TextView textView = findViewById(R.id.textView3);
                 try{
                 textView.setText(getString(R.string.blueWin));}catch (Exception e){}
@@ -763,7 +686,7 @@ read();
         else {
             makeGame();
             findViewById(R.id.imageButton29RealOnline).setEnabled(false);
-            allButtons(true);
+            //allButtons(true);
             for (int i = 0; i < players.size(); i++) {
                 Log.i(TAG, players.get(i));
             }
@@ -771,22 +694,22 @@ read();
     }
     private static final String TAG = "LOLKEK";
 
-    public void allButtons(boolean bool){
-        findViewById(R.id.firstFirstRealOnline).setEnabled(bool);
-        findViewById(R.id.firstSecondRealOnline).setEnabled(bool);
-        findViewById(R.id.firstThirdRealOnline).setEnabled(bool);
-        findViewById(R.id.firstFourthRealOnline).setEnabled(bool);
-        findViewById(R.id.secondFirstRealOnline).setEnabled(bool);
-        findViewById(R.id.secondSecondRealOnline).setEnabled(bool);
-        findViewById(R.id.secondThirdRealOnline).setEnabled(bool);
-        findViewById(R.id.secondFourthRealOnline).setEnabled(bool);
-        findViewById(R.id.thirdFirstRealOnline).setEnabled(bool);
-        findViewById(R.id.thirdSecondRealOnline).setEnabled(bool);
-        findViewById(R.id.thirdThirdRealOnline).setEnabled(bool);
-        findViewById(R.id.thirdFourthRealOnline).setEnabled(bool);
-        findViewById(R.id.fourthFirstRealOnline).setEnabled(bool);
-        findViewById(R.id.fourthSecondRealOnline).setEnabled(bool);
-        findViewById(R.id.fourthThirdRealOnline).setEnabled(bool);
-        findViewById(R.id.fourthFourthRealOnline).setEnabled(bool);
-    }
+//    public void allButtons(boolean bool){
+//        findViewById(R.id.firstFirstRealOnline).setEnabled(bool);
+//        findViewById(R.id.firstSecondRealOnline).setEnabled(bool);
+//        findViewById(R.id.firstThirdRealOnline).setEnabled(bool);
+//        findViewById(R.id.firstFourthRealOnline).setEnabled(bool);
+//        findViewById(R.id.secondFirstRealOnline).setEnabled(bool);
+//        findViewById(R.id.secondSecondRealOnline).setEnabled(bool);
+//        findViewById(R.id.secondThirdRealOnline).setEnabled(bool);
+//        findViewById(R.id.secondFourthRealOnline).setEnabled(bool);
+//        findViewById(R.id.thirdFirstRealOnline).setEnabled(bool);
+//        findViewById(R.id.thirdSecondRealOnline).setEnabled(bool);
+//        findViewById(R.id.thirdThirdRealOnline).setEnabled(bool);
+//        findViewById(R.id.thirdFourthRealOnline).setEnabled(bool);
+//        findViewById(R.id.fourthFirstRealOnline).setEnabled(bool);
+//        findViewById(R.id.fourthSecondRealOnline).setEnabled(bool);
+//        findViewById(R.id.fourthThirdRealOnline).setEnabled(bool);
+//        findViewById(R.id.fourthFourthRealOnline).setEnabled(bool);
+//    }
 }

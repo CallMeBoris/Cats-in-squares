@@ -22,21 +22,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Random;
 
-import boris.google.android.ads.nativetemplates.NativeTemplateStyle;
-import boris.google.android.ads.nativetemplates.TemplateView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class FullscreenActivityBotHard extends AppCompatActivity {
+    private boolean firstStep = false; //for bot first step
+    private final String SAVED_BOOL_STEP = "saved_bool_step";
     private Animation anim;
     private int idimage=0;
     private SharedPreferences spref;
@@ -141,7 +142,7 @@ public class FullscreenActivityBotHard extends AppCompatActivity {
     };
     private Bundle bundle;
 
-
+    private AdView mAdView;
     @Override
     protected synchronized void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,24 +186,24 @@ public class FullscreenActivityBotHard extends AppCompatActivity {
         // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
         matrixWithEverything.random();
         vyvod();
+        spref = getSharedPreferences("forFirstStep", Context.MODE_PRIVATE);
+        if (spref.getBoolean(SAVED_BOOL_STEP,false)){
+            firstStep=true;//for bot first step
+            stepBot2();// for bot first step
+            firstStep=false;// for bot first step
+            count=1;
+            setFourButtons(true);
+        }
 
-        MobileAds.initialize(this, "ca-app-pub-5586713183085646~5422503179");
-        AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
-                    @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        NativeTemplateStyle styles = new
-                                NativeTemplateStyle.Builder().build();
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
-                        TemplateView template = findViewById(R.id.my_templateBotGameHard);
-                        template.setStyles(styles);
-                        template.setNativeAd(unifiedNativeAd);
-
-                    }
-                })
-                .build();
-
-        adLoader.loadAd(new AdRequest.Builder().build());
+        mAdView = findViewById(R.id.adViewActivityBotHard);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -374,9 +375,11 @@ enabled(true);
                 }catch (Exception e){}
             }
 
+
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int a = matrix[aa[i]][bb[j]];
+                if (firstStep){return a;}// for bot first step
                 if (matrixWithEverything.uslovieZam(a, idimage)&&a!=77&&a!=88) {
                     return a;
                 }

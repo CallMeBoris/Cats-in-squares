@@ -42,7 +42,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="7dp"
             android:layout_marginLeft="7dp"
-            android:background="@drawable/wooden">
+            android:background="@drawable/wooden2">
 
             <TableRow
                 android:layout_width="0dp"
@@ -204,12 +204,16 @@
                     android:onClick="talk"/>
             </TableRow>
 
-            <boris.google.android.ads.nativetemplates.TemplateView
-                android:id="@+id/my_templateGame"
-                app:gnt_template_type="@layout/gnt_small_template_view"
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adViewActivityTwoPlayers"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                />
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/2247696110">
+            </com.google.android.gms.ads.AdView>
 
         </TableLayout>
         <LinearLayout

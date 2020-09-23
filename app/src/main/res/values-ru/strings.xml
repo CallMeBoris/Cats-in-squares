@@ -43,14 +43,13 @@
 
     <string name="graph"><font size="20">Графическое сопровождение:</font>
         \n \n \t Карточки: Романов Владимир. Instagram: @art.romanovvlm
-        \n \n \t Фон: Иванова Алина</string>
-    <string name="OldGraph"><font size="20">\nСтарая версия дизайна:</font>
-        \n\n \t Гордиенко Ирина</string>
+        \n \n \t Фон: Иванова Алина
+    \n \n \t Старая версия дизайна: Гордиенко Ирина</string>
     <string name="audio"><font size="20">\nЗвуковое сопровождение:</font>
         \n\n \t Шохин Дмитрий. Вконтакте: @shohinizmth</string>
     <string name="translate"><font size="20">\nПеревод на другой язык:</font>
         \n\n \t Английский, немецкий: Гордиенко Ирина
         \n\n \t Украинский: Матвеев Александр. Telegram: @unicorn_porn</string>
     <string name="BtnAbout">Об авторах</string>
-
+    <string name="bot_first">Бот начинает игру</string>
 </resources>

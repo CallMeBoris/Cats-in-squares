@@ -95,8 +95,10 @@
             android:layout_height="match_parent"
             android:layout_weight="2">
 
-            <CheckBox
+            <boris.narodov.catsinsquares.OutlineTextView
                 android:id="@+id/sound"
+                app:textStrokeWidth="5sp"
+                app:textStrokeColor="#FFFFFF"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -122,13 +124,16 @@
                 android:text="@string/exit" />
         </TableRow>
 
-        <boris.google.android.ads.nativetemplates.TemplateView
-            android:id="@+id/my_template"
-        app:gnt_template_type="@layout/gnt_small_template_view"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-
-            />
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewActivityMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/2247696110">
+        </com.google.android.gms.ads.AdView>
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
