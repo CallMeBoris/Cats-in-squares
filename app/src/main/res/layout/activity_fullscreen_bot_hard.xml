@@ -11,8 +11,7 @@
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <ImageView
-        android:id="@+id/backgroundGameOnline"
-        app:srcCompat="@drawable/backgr1"
+        android:id="@+id/backgroundGameHard"
         tools:ignore="MissingConstraints"
         android:layout_height="match_parent"
         android:layout_width="0dp"
@@ -38,11 +37,11 @@
 
         <TableLayout
             android:layout_width="match_parent"
+            android:id="@+id/tableHard"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginRight="7dp"
             android:layout_marginLeft="7dp"
-            android:background="@drawable/wooden2"
             >
 
             <TableRow
@@ -95,7 +94,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/nothing"
                     android:scaleType="centerInside"
                     android:background="@android:color/transparent"
                     android:onClick="talkBot"/>
@@ -129,7 +127,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/nothing"
                     android:scaleType="centerInside"
                     android:background="@android:color/transparent"
                     android:onClick="talkBot"/>
@@ -164,7 +161,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/nothing"
                     android:background="@android:color/transparent"
                     android:onClick="talkBot"/>
             </TableRow>
@@ -197,7 +193,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/nothing"
                     android:scaleType="centerInside"
                     android:background="@android:color/transparent"
                     android:onClick="talkBot"/>
@@ -211,7 +206,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-3940256099942544/2247696110">
+                ads:adUnitId="ca-app-pub-5586713183085646/6221739985">
             </com.google.android.gms.ads.AdView>
 
         </TableLayout>

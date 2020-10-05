@@ -43,7 +43,7 @@
 
     <string name="graph"><font size="20">Графiчний супровiд:</font>
         \n \n \t Картки: Романов Володимир. Instagram: @art.romanovvlm
-        \n \n \t Фон: Iванова Алiна
+        \n \n \t Картки, фон: Iванова Алiна
      \n \n \t Стара версiя дизайну: Гордiєнко Iрина</string>
     <string name="audio"><font size="20">\nЗвуковий супровiд:</font>
         \n\n \t Шохiн Дмитро. Вконтактi: @shohinizmth</string>
@@ -52,4 +52,12 @@
         \n\n \t Український: Матвєєв Олександр. Telegram: @unicorn_porn</string>
     <string name="BtnAbout">Про авторiв</string>
     <string name="bot_first">Бот починає гру</string>
+
+    <string name="classic">класичний</string>
+    <string name="puzzle">головоломка</string>
+    <string name="score">Оцiнка: \n</string>
+    <string name="max_score">Максимальний бал: \n</string>
+    <string name="continue_game">Продовжити гру?</string>
+    <string name="continue_btn">Продовжити</string>
+    <string name="new_game">Нова гра</string>
 </resources>

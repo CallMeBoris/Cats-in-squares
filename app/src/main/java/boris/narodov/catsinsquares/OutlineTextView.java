@@ -9,8 +9,6 @@ import android.graphics.Paint.Join;
 import android.graphics.Paint.Style;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.widget.CheckBox;
-import android.widget.TextView;
 
 public class OutlineTextView extends androidx.appcompat.widget.AppCompatCheckBox {
     private int strokeColor= Color.TRANSPARENT;

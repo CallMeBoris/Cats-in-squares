@@ -9,8 +9,7 @@
     >
 
     <ImageView
-        android:id="@+id/backgroundGameOnline"
-        app:srcCompat="@drawable/wooden2"
+        android:id="@+id/backgroundRules"
         tools:ignore="MissingConstraints"
         android:layout_height="match_parent"
         android:layout_width="0dp"
@@ -36,18 +35,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:fontFamily="@font/labor_union_regular"
-                android:text="@string/rulesFirst"
                 android:textColor="#000080"
                 android:textStyle="italic|bold"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageRulesFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/rules1" />
+                android:layout_marginRight="10dp"/>
 
             <TextView
                 android:id="@+id/rulesSecond"
@@ -60,39 +57,34 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:fontFamily="@font/labor_union_regular"
-                android:text="@string/rulesSecond"
                 android:textColor="#000080"
                 android:textStyle="italic|bold"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageRulesSecond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/rules2"
                 android:layout_marginBottom="20dp"/>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageRulesThird"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/rules3"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imageRulesFourth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/rules4"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageRulesFifth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/rules5"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
 
@@ -107,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:fontFamily="@font/labor_union_regular"
-                android:text="@string/rulesThird"
                 android:textColor="#000080"
                 android:textStyle="italic|bold"
                 tools:ignore="MissingConstraints" />
@@ -117,7 +108,6 @@
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back"
                 android:onClick="exitMenu"
                 style="@style/buttonsMenuExit"/>
         </LinearLayout>

@@ -8,8 +8,7 @@
     tools:context="boris.narodov.catsinsquares.Language">
 
     <ImageView
-        android:id="@+id/backgroundGameOnline"
-        app:srcCompat="@drawable/backgr1"
+        android:id="@+id/backgroundLanguage"
         tools:ignore="MissingConstraints"
         android:layout_height="match_parent"
         android:layout_width="0dp"
@@ -25,10 +24,9 @@
             android:layout_weight="2">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/lanEng"
                 style="@style/buttonsMenu"
                 android:layout_marginTop="70dp"
-                android:text="@string/english"
                 android:onClick="eng"/>
         </TableRow>
 
@@ -38,9 +36,8 @@
             android:layout_weight="2">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/lanDeu"
                 style="@style/buttonsMenu"
-                android:text="@string/deutsch"
                 android:onClick="deu"/>
         </TableRow>
 
@@ -50,9 +47,8 @@
             android:layout_weight="2">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/lanRus"
                 style="@style/buttonsMenu"
-                android:text="@string/russian"
                 android:onClick="ru"/>
         </TableRow>
 
@@ -62,9 +58,8 @@
             android:layout_weight="2">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/lanUkr"
                 style="@style/buttonsMenu"
-                android:text="@string/ukranian"
                 android:onClick="ukr"/>
         </TableRow>
 
@@ -74,10 +69,9 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/lanExit"
                 style="@style/buttonsMenuExit"
                 android:onClick="back"
-                android:text="@string/back"
                 android:minWidth="200dp"
                 android:minHeight="50dp"/>
         </TableRow>

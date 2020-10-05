@@ -4,28 +4,27 @@
     package="boris.narodov.catsinsquares">
 
     <application
+        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Cats in squares"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PuzzleActivity"
+            android:screenOrientation="locked"></activity>
         <activity
-            android:name=".FullscreenActivityOnline"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen_online"
-            android:theme="@style/FullscreenTheme"></activity>
-        <activity android:name=".AboutTheAuthors" />
-        <activity
-            android:name=".Real_online"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/gameName"
-            android:screenOrientation="locked"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-            android:launchMode="standard"
-            tools:replace="android:launchMode" />
+            android:name=".newMenuActivity"
+            android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AboutTheAuthors"
+            android:screenOrientation="locked"/>
+
         <activity
             android:name=".FullscreenActivityBotHard"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -63,13 +62,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="locked"
-            android:theme="@style/Menu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Menu"></activity>
         <activity
             android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -20,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences spref;
     private final String SAVED_BOOL = "saved_bool";
-    private final String SAVED_BOOL2 = "saved_bool2";
 
     private AdView mAdView;
 
@@ -28,7 +32,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-                loadCheck();
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int a = size.x;
+        int b = size.y;
+        int c = Math.max(a, b);
+        Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
+        Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);
+
+        ImageView image = findViewById(R.id.backgroundClassic);
+        Button button1 = findViewById(R.id.gameBot);
+        Button button2 = findViewById(R.id.game);
+        Button button3 = findViewById(R.id.rules);
+        Button button5 = findViewById(R.id.classicExit);
+        try {
+            image.setImageBitmap(resized);
+            button1.setText(getText(R.string.play));
+            button2.setText(getText(R.string.two_players));
+            button3.setText(getText(R.string.rules));
+            button5.setText(getText(R.string.back));
+        }catch (Exception e){}
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -43,81 +69,42 @@ public class MainActivity extends AppCompatActivity {
 
     public void game(View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
-        if(isSound()){
-        mp.start();}
-        Intent intent = new Intent(this, FullscreenActivityOnline.class);
+        spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
+        if (spref.getBoolean(SAVED_BOOL,false)){
+            mp.start();}
+        Intent intent = new Intent(this, FullscreenActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void gameBot(final View view) {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
-        if (isSound()){
-        mp.start();}
+        spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
+        if (spref.getBoolean(SAVED_BOOL,false)){
+            mp.start();}
         Intent intent = new Intent(this, BotMenu.class);
         startActivity(intent);
         finish();
     }
 
-    public void language(final View view) {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
-        if (isSound()){
-        mp.start();}
-        Intent intent = new Intent(this, Language.class);
-        startActivity(intent);
-        finish();
-    }
-
     public void exit(final View view) {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat2);
-        if (isSound()){
-        mp.start();}
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
+        if (spref.getBoolean(SAVED_BOOL,false)){
+            mp.start();}
+        Intent intent = new Intent(this, newMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
 public void rules(View view){
     final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
-    if (isSound()){
-    mp.start();}
+    spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
+    if (spref.getBoolean(SAVED_BOOL,false)){
+        mp.start();}
     Intent intent = new Intent(this, Rules.class);
     startActivity(intent);
     finish();
 }
 
-    public void about(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
-        if (isSound()){
-            mp.start();}
-        Intent intent = new Intent(this, AboutTheAuthors.class);
-        startActivity(intent);
-        finish();
-    }
-
-
-    public boolean isSound() {
-CheckBox sound = findViewById(R.id.sound);
-        return sound.isChecked();
-    }
-
-
-private void savedCheck(){
-        spref = getSharedPreferences("forsound",Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed = spref.edit();
-        ed.putBoolean(SAVED_BOOL,isSound());
-        ed.putBoolean(SAVED_BOOL2, true);
-        ed.apply();
-}
-
-private void loadCheck(){
-    spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
-   boolean savedBool = spref.getBoolean(SAVED_BOOL,true);
-    CheckBox sound = findViewById(R.id.sound);
-    sound.setChecked(savedBool);
-}
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        savedCheck();
-    }
 }

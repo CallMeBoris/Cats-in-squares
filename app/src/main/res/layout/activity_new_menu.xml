@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".newMenuActivity"
+    android:id="@+id/newMenu"
+    >
+
+    <ImageView
+        android:id="@+id/backgroundNewMenu"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <TableLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+
+        <Button
+            android:id="@+id/classic"
+            style="@style/buttonsMenu"
+            android:layout_marginTop="50dp"
+            android:minHeight="70dp"
+            android:onClick="classic" />
+
+    </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <Button
+                android:id="@+id/puzzle"
+                style="@style/buttonsMenu"
+                android:minHeight="70dp"
+                android:onClick="puzzle"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <Button
+                android:id="@+id/language"
+                android:minHeight="70dp"
+                style="@style/buttonsMenu"
+                android:onClick="language"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <Button
+                android:id="@+id/about"
+                android:minHeight="70dp"
+                style="@style/buttonsMenu"
+                android:onClick="about"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <boris.narodov.catsinsquares.OutlineTextView
+                android:id="@+id/soundNewMenu"
+                android:theme="@style/MyCheckBox"
+                app:textStrokeWidth="5sp"
+                app:textStrokeColor="#FFFFFF"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="3"
+                android:textColor="#000080"
+                android:textSize="28sp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/exitNewMenu"
+                style="@style/buttonsMenu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="2"
+                android:minWidth="150dp"
+                android:minHeight="50dp"
+                android:onClick="exit"/>
+        </TableRow>
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewActivityNewMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5586713183085646/6246504722">
+        </com.google.android.gms.ads.AdView>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

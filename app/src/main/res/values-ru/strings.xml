@@ -43,7 +43,7 @@
 
     <string name="graph"><font size="20">Графическое сопровождение:</font>
         \n \n \t Карточки: Романов Владимир. Instagram: @art.romanovvlm
-        \n \n \t Фон: Иванова Алина
+        \n \n \t Карточки, фон: Иванова Алина
     \n \n \t Старая версия дизайна: Гордиенко Ирина</string>
     <string name="audio"><font size="20">\nЗвуковое сопровождение:</font>
         \n\n \t Шохин Дмитрий. Вконтакте: @shohinizmth</string>
@@ -52,4 +52,12 @@
         \n\n \t Украинский: Матвеев Александр. Telegram: @unicorn_porn</string>
     <string name="BtnAbout">Об авторах</string>
     <string name="bot_first">Бот начинает игру</string>
+
+    <string name="classic">классика</string>
+    <string name="puzzle">головоломка</string>
+    <string name="score">Счёт: \n</string>
+    <string name="max_score">Рекорд: \n</string>
+    <string name="continue_game">Продолжить игру?</string>
+    <string name="continue_btn">Продолжить</string>
+    <string name="new_game">Новая игра</string>
 </resources>

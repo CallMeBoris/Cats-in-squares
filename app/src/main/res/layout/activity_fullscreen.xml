@@ -12,8 +12,7 @@
          TextureView, etc. -->
 
     <ImageView
-        android:id="@+id/backgroundGameOnline"
-        app:srcCompat="@drawable/backgr1"
+        android:id="@+id/backgroundGameTwoPlayers"
         tools:ignore="MissingConstraints"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -38,11 +37,11 @@
 
         <TableLayout
             android:layout_width="match_parent"
+            android:id="@+id/twoPlayersWood"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginRight="7dp"
-            android:layout_marginLeft="7dp"
-            android:background="@drawable/wooden2">
+            android:layout_marginLeft="7dp">
 
             <TableRow
                 android:layout_width="0dp"
@@ -62,7 +61,7 @@
                     android:textStyle="italic" />
 
                 <ImageButton
-                    android:id="@+id/imageButton29"
+                    android:id="@+id/imageButtonTwoPlayers"
                     style="@style/mainButtonsIn" />
             </TableRow>
 
@@ -97,8 +96,7 @@
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:onClick="talk"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/nothing" />
+                    android:scaleType="centerInside" />
             </TableRow>
 
             <TableRow
@@ -107,8 +105,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:layout_marginBottom="5dp"
-                >
+                android:layout_marginBottom="5dp">
 
                 <ImageButton
                     android:id="@+id/secondFirst"
@@ -130,7 +127,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/nothing"
                     android:scaleType="centerInside"
                     android:background="@android:color/transparent"
                     android:onClick="talk"/>
@@ -165,7 +161,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/nothing"
                     android:background="@android:color/transparent"
                     android:onClick="talk"/>
             </TableRow>
@@ -198,7 +193,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/nothing"
                     android:scaleType="centerInside"
                     android:background="@android:color/transparent"
                     android:onClick="talk"/>
@@ -212,7 +206,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-3940256099942544/2247696110">
+                ads:adUnitId="ca-app-pub-5586713183085646/3495504295">
             </com.google.android.gms.ads.AdView>
 
         </TableLayout>

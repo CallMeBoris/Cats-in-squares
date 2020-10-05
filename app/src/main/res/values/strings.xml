@@ -58,7 +58,7 @@ The first player draws any card from the edge of the field, i.e. four cards from
     <string name="title_activity_real_online" translatable="false">Real_online</string>
     <string name="graph"><font size="20">Graphic design:</font>
         \n \n \t Cards: Romanov Vladimir. Instagram: @art.romanovvlm
-        \n \n \t Background: Ivanova Alina
+        \n \n \t Cards, background: Ivanova Alina
         \n \n \t Old design version: Gordienko Irina</string>
     <string name="audio"><font size="20">\nSound design:</font>
         \n\n \t Shohin Dmitry. Vk: @shohinizmth</string>
@@ -68,5 +68,13 @@ The first player draws any card from the edge of the field, i.e. four cards from
     <string name="BtnAbout">Credits</string>
 
     <string name="bot_first">Bot starts the game</string>
+    <string name="classic">classic</string>
+    <string name="puzzle">puzzle</string>
+    <string name="score">Score: \n</string>
+    <string name="max_score">Max score: \n</string>
+    <string name="continue_game">Continue the game?</string>
+    <string name="continue_btn">Continue</string>
+    <string name="new_game">New game</string>
+
 
 </resources>

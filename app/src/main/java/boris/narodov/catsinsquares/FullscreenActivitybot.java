@@ -5,15 +5,23 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -147,6 +155,30 @@ public class FullscreenActivitybot extends AppCompatActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int a = size.x;
+        int b = size.y;
+        int c = Math.max(a, b);
+        Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
+        Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);
+
+        ImageView image1 = findViewById(R.id.backgroundGameEasy);
+        ImageButton image3 = findViewById(R.id.imageButtonEasy);
+        TableLayout image2 = findViewById(R.id.tableEasy);
+
+        Bitmap bitTable = BitmapFactory.decodeResource(getResources(),R.drawable.wooden2);
+        Bitmap resizedTable = Bitmap.createScaledBitmap(bitTable,c,c,true);
+        Drawable d = new BitmapDrawable(getResources(),resizedTable);
+        try {
+            image1.setImageBitmap(resized);
+            image2.setBackground(d);
+            image3.setImageResource(R.drawable.nothing);
+        }catch (Exception e){}
+
+
 
         Thread forSound = new Thread(sound);
 
@@ -357,7 +389,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
                     if (matrix[i][j] == a && matrix[i][j] != 88 && matrix[i][j] != 77) {
                         matrix[i][j] = 88;
                         int b = images[i][j];
-                        ImageButton imageButtonExample = findViewById(R.id.imageButton29Bot);
+                        ImageButton imageButtonExample = findViewById(R.id.imageButtonEasy);
                         try{imageButtonExample.startAnimation(anim);}catch(Exception e){}
                         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
                         if (spref.getBoolean(SAVED_BOOL,false)){
@@ -392,7 +424,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
                         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
                         if (spref.getBoolean(SAVED_BOOL,false)){
                             mp.start();}
-                        ImageButton imageButtonExample = findViewById(R.id.imageButton29Bot);
+                        ImageButton imageButtonExample = findViewById(R.id.imageButtonEasy);
                         try{imageButtonExample.setImageResource(b5);
                         imageButtonExample.startAnimation(anim);}catch(Exception e){}
                         try{images[i1][j1] = R.drawable.secondplayer;}catch (Exception e){}

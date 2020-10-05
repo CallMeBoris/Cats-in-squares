@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PuzzleActivity">
+
+    <ImageView
+        android:id="@+id/backgroundPuzzle"
+        tools:ignore="MissingConstraints"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginLeft="7dp"
+        android:id="@+id/tablepuzzle">
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:layout_margin="10dp"
+            android:minHeight="250dp">
+
+            <TextView
+                android:id="@+id/maxScore"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:textColor="#000080"
+                android:textSize="28sp"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_weight="2"
+                style="@style/mainButtonsIn"
+                android:textSize="28sp"
+                android:fontFamily="@font/dalmata_dream_normal_109866"
+                android:textColor="#000080"/>
+        </TableRow>
+
+        <TableRow
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/firstFirstPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/firstSecondPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/firstThirdPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/firstFourthPuzzle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <ImageView
+                android:id="@+id/secondFirstPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/secondSecondPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/secondThirdPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/secondFourthPuzzle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:id="@+id/thirdFirstPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/thirdSecondPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/thirdThirdPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/thirdFourthPuzzle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp">
+
+            <ImageView
+                android:id="@+id/fourthFirstPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/fourthSecondPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/fourthThirdPuzzle"
+                style="@style/mainButtonsIn"/>
+
+            <ImageView
+                android:id="@+id/fourthFourthPuzzle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"/>
+        </TableRow>
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewActivityPuzzle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5586713183085646/9824633562">
+        </com.google.android.gms.ads.AdView>
+
+    </TableLayout>
+    <LinearLayout
+        android:id="@+id/fullscreen_content_controls"
+        style="?metaButtonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/black_overlay"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+    </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

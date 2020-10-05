@@ -41,7 +41,7 @@
 
     <string name="graph"><font size="20">Graphisches design:</font>
         \n \n \t Karten: Romanov Vladimir. Instagram: @art.romanovvlm
-        \n \n \t Hintergrund: Ivanova Alina
+        \n \n \t Karten, Hintergrund: Ivanova Alina
         \n \n \t Alte Designversion: Gordienko Irina</string>
     <string name="audio"><font size="20">\nSound design:</font>
         \n\n \t Shohin Dmitry. Vk: @shohinizmth</string>
@@ -50,4 +50,12 @@
         \n\n \t Ukrainisch: Matvieiev Oleksandr. Telegram: @unicorn_porn</string>
     <string name="BtnAbout">Credits</string>
     <string name="bot_first">Bot beginnt das Spiel</string>
+
+    <string name="classic">klassisch</string>
+    <string name="puzzle">Puzzle</string>
+    <string name="score">Ergebnis: \n</string>
+    <string name="max_score">Max Punktzahl: \n</string>
+    <string name="continue_game">Das Spiel fortsetzen?</string>
+    <string name="continue_btn">Fortsetzen</string>
+    <string name="new_game">Neues Spiel</string>
 </resources>

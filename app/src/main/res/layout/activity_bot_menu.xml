@@ -8,8 +8,8 @@
     tools:context="boris.narodov.catsinsquares.BotMenu">
 
     <ImageView
-        android:id="@+id/backgroundGameOnline"
-        app:srcCompat="@drawable/backgr1"
+        android:id="@+id/backgroundBotMenu"
+
         tools:ignore="MissingConstraints"
         android:layout_height="match_parent"
         android:layout_width="0dp"
@@ -28,7 +28,7 @@
                 android:id="@+id/easy"
                 style="@style/buttonsMenu"
                 android:layout_marginTop="70dp"
-                android:text="@string/easy"
+
                 android:onClick="easy"
                 tools:ignore="OnClick" />
         </TableRow>
@@ -41,7 +41,7 @@
             <Button
                 android:id="@+id/medium"
                 style="@style/buttonsMenu"
-                android:text="@string/medium"
+
                 android:onClick="medium"
                 tools:ignore="OnClick" />
         </TableRow>
@@ -52,9 +52,9 @@
             android:layout_weight="2">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/hard"
                 style="@style/buttonsMenu"
-                android:text="@string/hard"
+
                 android:onClick="hard"
                 tools:ignore="OnClick" />
         </TableRow>
@@ -65,10 +65,10 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/buttonBack"
+                android:id="@+id/buttonBackBotMenu"
                 style="@style/buttonsMenuExit"
                 android:onClick="backbot"
-                android:text="@string/back"
+
                 android:minWidth="200dp"
                 android:minHeight="50dp"
                 tools:ignore="OnClick" />
@@ -85,18 +85,18 @@
                 android:gravity="center"
                 app:textStrokeWidth="5sp"
                 app:textStrokeColor="#FFFFFF"
-                android:id="@+id/botFirstStep"
+                android:id="@+id/botMenuBox"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="3"
-                android:text="@string/bot_first"
                 android:textColor="#000080"
                 android:textSize="28sp"
                 android:fontFamily="@font/dalmata_dream_normal_109866"
                 android:textStyle="italic" />
 
-        </TableRow>
-    </TableLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        </TableRow>
+
+                    </TableLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>

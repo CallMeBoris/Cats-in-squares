@@ -2,7 +2,7 @@ package boris.narodov.catsinsquares;
 
 import java.util.Random;
 
-public class MatrixWithEverything {
+class MatrixWithEverything {
     private int[][] images ={{R.drawable.a11,R.drawable.a12,R.drawable.a13,R.drawable.a14},
             {R.drawable.a21,R.drawable.a22,R.drawable.a23,R.drawable.a24},
             {R.drawable.a31,R.drawable.a32,R.drawable.a33,R.drawable.a34},
@@ -10,15 +10,15 @@ public class MatrixWithEverything {
 
     private int[][] matrix={{11,12,13,14},{21,22,23,24},{31,32,33,34},{41,42,43,44}};
 
-    public int[][] getImages() {
+    int[][] getImages() {
         return images;
     }
 
-    public int[][] getMatrix() {
+    int[][] getMatrix() {
         return matrix;
     }
 
-    public boolean usloviyeWin(int[][] matr){
+    boolean usloviyeWin(int[][] matr){
         try{
             for (int j=0; j<4;j++){
                 if(matr[0][j]==matr[1][j]&&matr[2][j] == matr[3][j]&&matr[1][j]==matr[3][j]){return true;}
@@ -31,17 +31,17 @@ public class MatrixWithEverything {
         return false;
     }
 
-    public boolean uslovieZam(int a, int b){
+    boolean uslovieZam(int a, int b){
         return a / 10 == b / 10 || a % 10 == b % 10;
     }
 
-    public int counter(int count){
+    int counter(int count){
         if (count%2==0){
             return 2;
         }else {return 1;}
     }
 
-    public  void random(){
+    void random(){
         Random random = new Random();
         for (int i=0;i<4;i++){
             for (int j=0;j<4;j++){
