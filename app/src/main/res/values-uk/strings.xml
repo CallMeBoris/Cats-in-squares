@@ -60,4 +60,5 @@
     <string name="continue_game">Продовжити гру?</string>
     <string name="continue_btn">Продовжити</string>
     <string name="new_game">Нова гра</string>
+    <string name="snake">Змiя</string>
 </resources>

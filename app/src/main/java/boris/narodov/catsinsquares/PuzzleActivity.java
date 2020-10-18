@@ -16,6 +16,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -23,12 +24,14 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
 public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchListener.SimpleGestureListener {
+    private InterstitialAd mInterstitialAd;
     private OnSwipeTouchListener detector;
     private SharedPreferences spref;
     private final String SAVED_BOOL = "saved_bool";
@@ -38,8 +41,10 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
 
     private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
     private int[][] images = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+    private int[][] imagesRes = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+    private int scoreRes=0;
     private int[][] imagesBackground = matrixWithEverything.getImages();
-    private int[][] idImages ={{R.id.firstFirstPuzzle,R.id.firstSecondPuzzle,R.id.firstThirdPuzzle,R.id.firstFourthPuzzle},
+    private  int[][] idImages ={{R.id.firstFirstPuzzle,R.id.firstSecondPuzzle,R.id.firstThirdPuzzle,R.id.firstFourthPuzzle},
             {R.id.secondFirstPuzzle,R.id.secondSecondPuzzle,R.id.secondThirdPuzzle,R.id.secondFourthPuzzle},
             {R.id.thirdFirstPuzzle,R.id.thirdSecondPuzzle,R.id.thirdThirdPuzzle,R.id.thirdFourthPuzzle},
             {R.id.fourthFirstPuzzle,R.id.fourthSecondPuzzle,R.id.fourthThirdPuzzle,R.id.fourthFourthPuzzle}};
@@ -56,10 +61,10 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
         }
     };
 
-
     private AdView mAdView;
     int score, maxTile;
     int maxScore;
+    private int sizeBtn=100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +76,23 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
         display.getSize(size);
         int a = size.x;
         int b = size.y;
+        if (a==0||b==0){
+            a=1200;
+            b=1200;
+        }
         int c = Math.max(a, b);
+        sizeBtn = (int)(a/8);
         Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
         Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);
+        Bitmap bitBtn = BitmapFactory.decodeResource(getResources(),R.drawable.graybutton);
+        Bitmap resizedBtn = Bitmap.createScaledBitmap(bitBtn,sizeBtn,sizeBtn,true);
 
         TextView textScore = findViewById(R.id.score);
         TextView textMaxScore = findViewById(R.id.maxScore);
         ImageView image1 = findViewById(R.id.backgroundPuzzle);
         TableLayout image2 = findViewById(R.id.tablepuzzle);
+        ImageButton buttonBack = findViewById(R.id.backStep);
+        buttonBack.setEnabled(false);
         Bitmap bitTable = BitmapFactory.decodeResource(getResources(),R.drawable.wooden2);
         Bitmap resizedTable = Bitmap.createScaledBitmap(bitTable,c,c,true);
         Drawable d = new BitmapDrawable(getResources(),resizedTable);
@@ -87,6 +101,7 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
             textMaxScore.setText(getText(R.string.max_score));
             image1.setImageBitmap(resized);
             image2.setBackground(d);
+            buttonBack.setImageBitmap(resizedBtn);
         }catch (Exception e){}
 
         Thread forSound = new Thread(sound);
@@ -117,9 +132,13 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
         mAdView = findViewById(R.id.adViewActivityPuzzle);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5586713183085646/2290757899");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
-    public void vyvod(){
+    public synchronized void vyvod(){
         for (int i =0; i<4;i++){
             for (int j =0; j<4;j++) {
                 ImageView imageView = findViewById(idImages[i][j]);
@@ -148,7 +167,12 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
     }
     @Override
     public void onSwipe(int direction) {
-
+        ImageButton buttonBack = findViewById(R.id.backStep);
+        buttonBack.setEnabled(true);
+        scoreRes=score;
+        for (int i =0; i<images.length;i++){
+            for (int j=0; j<images[i].length;j++){
+                imagesRes[i][j] = images[i][j];}}
         switch (direction) {
             case OnSwipeTouchListener.SWIPE_RIGHT : right();
                 break;
@@ -162,7 +186,7 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
     }
 
     @Override
-    public void onDoubleTap() {}
+    public  void onDoubleTap() {}
 
     public void left() {
         boolean isChanged;
@@ -205,17 +229,23 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
             }
         }
         if (arrayBeChanged) {
-            isChanged=false;
-           for (int i=0;i<4;i++) {
-               for (int j = 0; j < 4; j++) {
-                   if (isChanged) {break;}
-                   if (images[i][j] == 0) {
-                       images[i][j] = (Math.random() < 0.9 ? 2 : 4);
-                       isChanged = true;
-                   }
-               }
-           }
+            Bitmap bitBtn = BitmapFactory.decodeResource(getResources(),R.drawable.greenbutton);
+            Bitmap resizedBtn = Bitmap.createScaledBitmap(bitBtn,sizeBtn,sizeBtn,true);
+            ImageButton buttonBack = findViewById(R.id.backStep);
+            try{buttonBack.setImageBitmap(resizedBtn);}catch (Exception e){}
+            isChanged = false;
+            for (int i = 0; i<4; i++){
+                for (int j = 0; j<4; j++){
+                    if (isChanged){break;}
+                    int[] a = {1,3,2,0};
+
+                    if (images[a[i]][j] == 0){
+                        images[a[i]][j] = Math.random() < 0.9 ? 2:4;
+                        isChanged = true;
+                    }
+                }
             }
+        }
 vyvod();
         TextView textView = findViewById(R.id.score);
         try{textView.setText(getString((R.string.score))+score);}catch (Exception e){}
@@ -229,6 +259,9 @@ vyvod();
         try{textView2.setText(getString((R.string.max_score))+maxScore);}catch (Exception e){}
 
         if (!canMove()){
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            }
             final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
             AlertDialog.Builder builder = new AlertDialog.Builder(PuzzleActivity.this, R.style.AlertDialogCustom);
             builder.setTitle(getString(R.string.youLose));
@@ -316,7 +349,7 @@ vyvod();
         return arrayBeChanged;
     }
 
-    private void rotateClockwise() {
+    private synchronized void rotateClockwise() {
         int[][] tmpMatrix = new int[images.length][images.length];
         for (int row = 0; row < images.length; row++) {
             for (int col = 0; col < images[0].length; col++) {
@@ -426,6 +459,20 @@ vyvod();
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void backStep(View view){
+        Bitmap bitBtn = BitmapFactory.decodeResource(getResources(),R.drawable.graybutton);
+        Bitmap resizedBtn = Bitmap.createScaledBitmap(bitBtn,sizeBtn,sizeBtn,true);
+        ImageButton buttonBack = findViewById(R.id.backStep);
+        try{buttonBack.setImageBitmap(resizedBtn);}catch (Exception e){}
+        for (int i =0; i<images.length;i++){
+            for (int j=0; j<images[i].length;j++){
+                images[i][j] = imagesRes[i][j];}}
+        score=scoreRes;
+        TextView textView = findViewById(R.id.score);
+        try{textView.setText(getString((R.string.score))+score);}catch (Exception e){}
+        vyvod();
     }
 
     @Override

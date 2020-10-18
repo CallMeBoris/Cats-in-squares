@@ -16,16 +16,13 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
 public class BotMenu extends AppCompatActivity {
     private SharedPreferences spref;
     private final String SAVED_BOOL = "saved_bool";
     private final String SAVED_BOOL_STEP = "saved_bool_step";
+    private final String SAVED_INT_LEVEL = "saved_int_level";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +72,9 @@ public class BotMenu extends AppCompatActivity {
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}
+        SharedPreferences.Editor ed = spref.edit();
+        ed.putInt(SAVED_INT_LEVEL,1);
+        ed.apply();
         Intent intent = new Intent(this,FullscreenActivitybot.class);
         startActivity(intent);
         finish();
@@ -86,7 +86,10 @@ public class BotMenu extends AppCompatActivity {
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}
-        Intent intent = new Intent(this,FullscreenActivityBotMedium.class);
+        SharedPreferences.Editor ed = spref.edit();
+        ed.putInt(SAVED_INT_LEVEL,2);
+        ed.apply();
+        Intent intent = new Intent(this,FullscreenActivitybot.class);
         startActivity(intent);
         finish();
     }
@@ -97,7 +100,10 @@ public class BotMenu extends AppCompatActivity {
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
-        Intent intent = new Intent(this,FullscreenActivityBotHard.class);
+        SharedPreferences.Editor ed = spref.edit();
+        ed.putInt(SAVED_INT_LEVEL,3);
+        ed.apply();
+        Intent intent = new Intent(this,FullscreenActivitybot.class);
         startActivity(intent);
         finish();
     }

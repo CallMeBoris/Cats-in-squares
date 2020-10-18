@@ -97,6 +97,5 @@
                 android:textStyle="italic" />
 
                         </TableRow>
-
                     </TableLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

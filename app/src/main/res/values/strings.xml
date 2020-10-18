@@ -75,6 +75,6 @@ The first player draws any card from the edge of the field, i.e. four cards from
     <string name="continue_game">Continue the game?</string>
     <string name="continue_btn">Continue</string>
     <string name="new_game">New game</string>
-
+    <string name="snake">Snake</string>
 
 </resources>

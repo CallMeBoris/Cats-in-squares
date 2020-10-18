@@ -2,28 +2,20 @@ package boris.narodov.catsinsquares;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.BitmapDrawableResource;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -35,6 +27,7 @@ public class newMenuActivity extends AppCompatActivity {
     private final String SAVED_BOOL = "saved_bool";
     private final String SAVED_BOOL2 = "saved_bool2";
     private final String SAVED_SCORE = "saved_score";
+    private final String SAVED_SCORE_SNAKE = "saved_score_snake";
     private AdView mAdView;
 
     @Override
@@ -59,6 +52,7 @@ public class newMenuActivity extends AppCompatActivity {
         Button button3 = findViewById(R.id.language);
         Button button4 = findViewById(R.id.about);
         Button button5 = findViewById(R.id.exitNewMenu);
+        Button button6 = findViewById(R.id.snake);
         OutlineTextView box = findViewById(R.id.soundNewMenu);
         try {
             image.setImageBitmap(resized);
@@ -67,6 +61,7 @@ public class newMenuActivity extends AppCompatActivity {
             button3.setText(getText(R.string.language));
             button4.setText(getText(R.string.BtnAbout));
             button5.setText(getText(R.string.exit));
+            button6.setText(getText(R.string.snake));
             box.setText(getText(R.string.sound_on));
         }catch (Exception e){}
 
@@ -96,6 +91,16 @@ public class newMenuActivity extends AppCompatActivity {
             mp.start();}
         savedCheck();
         Intent intent = new Intent(this, PuzzleActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void snake(View view){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        if (isSound()){
+            mp.start();}
+        savedCheck();
+        Intent intent = new Intent(this, SnakeActivity.class);
         startActivity(intent);
         finish();
     }
@@ -132,6 +137,8 @@ public class newMenuActivity extends AppCompatActivity {
         ed.putBoolean(SAVED_BOOL2, true);
         if (spref.getInt(SAVED_SCORE,0)<1){
         ed.putInt(SAVED_SCORE,0);}
+        if (spref.getInt(SAVED_SCORE_SNAKE,0)<1){
+            ed.putInt(SAVED_SCORE_SNAKE,0);}
         ed.apply();
     }
 

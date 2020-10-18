@@ -47,8 +47,12 @@ public class FullscreenActivitybot extends AppCompatActivity {
     private SharedPreferences spref;
     private final String SAVED_BOOL_STEP = "saved_bool_step";
     private final String SAVED_BOOL = "saved_bool";
+    private final String SAVED_INT_LEVEL = "saved_int_level";
     private Animation anim;
     private int idimage=0;
+    private int step=0;
+    private int[] firstNumFromYourStep = {0,1,2,3,4,5,6,7};
+    private int[] secondNumFromYourStep={0,1,2,3,4,5,6,7};
 
     private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
     private int[][] images = matrixWithEverything.getImages();
@@ -350,7 +354,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
         }
         return 0;}
 
-    public int bot() {
+    public int botEasy() {
         int[] aa = {0, 1, 2, 3};
         int[] bb = {0, 1, 2, 3};
         Random random = new Random();
@@ -371,7 +375,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
                 if (firstStep){
                     if ((a!=11)&&(a!=12)&&(a!=21)&&(a!=22)){
                         return a;
-                    }else {bot();}
+                    }else {botEasy();}
                 }// for bot first step
                 if (matrixWithEverything.uslovieZam(a, idimage)&&a!=88&&a!=77) {
                     return a;
@@ -381,12 +385,132 @@ public class FullscreenActivitybot extends AppCompatActivity {
         return 0;
     }
 
+    public int botMedium() {
+        int[] aa = {0, 1, 2, 3};
+        int[] bb = {0, 1, 2, 3};
+        Random random = new Random();
+        for (int i = 0; i < 4; i++) {
+            int index1 = random.nextInt(i +1);
+            int index2 = random.nextInt(i +1);
+            int a2 = aa[index1];
+            int b2 = bb[index2];
+            aa[index1]=aa[i];
+            bb[index2]=bb[i];
+            aa[i]=a2;
+            bb[i]=b2;
+        }
+        int[] aa2 = {1, 2};
+        int[] bb2 = {1, 2};
+        for (int i = 0; i < 2; i++) {
+            int index1 = random.nextInt(i +1);
+            int index2 = random.nextInt(i +1);
+            int a2 = aa2[index1];
+            int b2 = bb2[index2];
+            aa2[index1]=aa2[i];
+            bb2[index2]=bb2[i];
+            aa2[i]=a2;
+            bb2[i]=b2;
+        }
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                int a = matrix[aa2[i]][bb2[j]];
+                if (matrixWithEverything.uslovieZam(a, idimage)&&a!=0&&a!=1) {
+                    return a;
+                }
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                int a = matrix[aa[i]][bb[j]];
+                if (firstStep){
+                    if ((a!=11)&&(a!=12)&&(a!=21)&&(a!=22)){
+                        return a;
+                    }else {botMedium();}
+                }
+                if (matrixWithEverything.uslovieZam(a, idimage)&&a!=88&&a!=77) {
+                    return a;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int botHard() {
+        int[] aa = {0, 1, 2, 3};
+        int[] bb = {0, 1, 2, 3};
+        Random random = new Random();
+        for (int i = 0; i < 4; i++) {
+            int index1 = random.nextInt(i +1);
+            int index2 = random.nextInt(i +1);
+            int a2 = aa[index1];
+            int b2 = bb[index2];
+            aa[index1]=aa[i];
+            bb[index2]=bb[i];
+            aa[i]=a2;
+            bb[i]=b2;
+        }
+
+        for (int i = 0; i < step; i++) {
+            int index1 = random.nextInt(i +1);
+            int index2 = random.nextInt(i +1);
+            int a2 = firstNumFromYourStep[index1];
+            int b2 = secondNumFromYourStep[index2];
+            firstNumFromYourStep[index1]=firstNumFromYourStep[i];
+            secondNumFromYourStep[index2]=secondNumFromYourStep[i];
+            firstNumFromYourStep[i]=a2;
+            secondNumFromYourStep[i]=b2;
+        }
+
+        for (int i = 0; i < step; i++) {
+            int a;
+            int b;
+            int c;
+            int d;
+            try {
+                a = matrix[firstNumFromYourStep[i]-1][secondNumFromYourStep[i]];
+                if (matrixWithEverything.uslovieZam(a, idimage)) {
+                    return a;}
+            }catch (Exception e){}
+            try {
+                b = matrix[firstNumFromYourStep[i]+1][secondNumFromYourStep[i]];
+                if (matrixWithEverything.uslovieZam(b, idimage)) {
+                    return b; }
+            }catch (Exception e){}
+            try {
+                c = matrix[firstNumFromYourStep[i]][secondNumFromYourStep[i]-1];
+                if (matrixWithEverything.uslovieZam(c, idimage)) {
+                    return c;}
+            }catch (Exception e){}
+            try {
+                d = matrix[firstNumFromYourStep[i]][secondNumFromYourStep[i]+1];
+                if (matrixWithEverything.uslovieZam(d, idimage)) {
+                    return d;}
+            }catch (Exception e){}
+        }
+
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                int a = matrix[aa[i]][bb[j]];
+                if (firstStep){return a;}// for bot first step
+                if (matrixWithEverything.uslovieZam(a, idimage)&&a!=77&&a!=88) {
+                    return a;
+                }
+            }
+        }
+        return 0;
+    }
+
+
     public synchronized void stepBot(int a) {
         final MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.cat3);
         try {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     if (matrix[i][j] == a && matrix[i][j] != 88 && matrix[i][j] != 77) {
+                        firstNumFromYourStep[step]=i;
+                        secondNumFromYourStep[step]=j;
+                        step++;
                         matrix[i][j] = 88;
                         int b = images[i][j];
                         ImageButton imageButtonExample = findViewById(R.id.imageButtonEasy);
@@ -545,6 +669,16 @@ public class FullscreenActivitybot extends AppCompatActivity {
         findViewById(R.id.secondThirdBot).setEnabled(bool);
         findViewById(R.id.thirdSecondBot).setEnabled(bool);
         findViewById(R.id.thirdThirdBot).setEnabled(bool);
+    }
+
+    private int bot(){
+        spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
+        if (spref.getInt(SAVED_INT_LEVEL,0)==1){
+            return botEasy();}else
+        if (spref.getInt(SAVED_INT_LEVEL,0)==2){
+            return botMedium();}
+        else return botHard();
+
     }
 
     @Override

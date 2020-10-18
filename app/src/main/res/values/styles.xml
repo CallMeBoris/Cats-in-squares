@@ -60,13 +60,22 @@
     </style>
 
     <style name="mainButtonsIn">
-
         <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginRight">3dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="mainButtonsSnake">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">fitCenter</item>
     </style>
 
     <style name="buttonsMenuExit">
@@ -89,8 +98,8 @@
         <item name="android:background">@drawable/button_main</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginLeft">110dp</item>
-        <item name="android:layout_marginRight">110dp</item>
+        <item name="android:layout_marginLeft">100dp</item>
+        <item name="android:layout_marginRight">100dp</item>
         <item name="android:layout_marginBottom">30dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center|center_horizontal|center_vertical</item>

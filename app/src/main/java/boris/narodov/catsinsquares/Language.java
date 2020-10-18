@@ -22,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 public class Language extends AppCompatActivity {
-
     private SharedPreferences spref;
     private final String SAVED_BOOL = "saved_bool";
 

@@ -4,15 +4,18 @@
     package="boris.narodov.catsinsquares">
 
     <application
-        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Cats in squares"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PuzzleActivity"
-            android:screenOrientation="locked"></activity>
+        <activity android:name=".SnakeActivity"
+            android:screenOrientation="locked"/>
+        <activity
+            android:name=".PuzzleActivity"
+            android:screenOrientation="locked" />
         <activity
             android:name=".newMenuActivity"
             android:screenOrientation="locked">
@@ -22,26 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutTheAuthors"
-            android:screenOrientation="locked"/>
-
         <activity
-            android:name=".FullscreenActivityBotHard"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/gameName"
-            android:screenOrientation="locked"
-            android:theme="@style/FullscreenTheme" />
+            android:name=".AboutTheAuthors"
+            android:screenOrientation="locked" />
         <activity
             android:name=".BotMenu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/gameName"
             android:screenOrientation="locked" />
-        <activity
-            android:name=".FullscreenActivityBotMedium"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/gameName"
-            android:screenOrientation="locked"
-            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Rules"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -62,7 +53,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="locked"
-            android:theme="@style/Menu"></activity>
+            android:theme="@style/Menu" />
         <activity
             android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
