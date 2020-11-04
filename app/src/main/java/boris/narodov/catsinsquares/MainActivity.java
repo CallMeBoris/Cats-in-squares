@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void game(View view) {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gameBot(final View view) {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exit(final View view) {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 public void rules(View view){
-    final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+    final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
     spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
     if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}

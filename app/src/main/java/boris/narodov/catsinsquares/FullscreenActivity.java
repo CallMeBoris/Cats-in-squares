@@ -370,7 +370,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
 
     public void retry(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}

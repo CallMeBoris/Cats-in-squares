@@ -262,7 +262,7 @@ vyvod();
             if (mInterstitialAd.isLoaded()) {
                 mInterstitialAd.show();
             }
-            final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
             AlertDialog.Builder builder = new AlertDialog.Builder(PuzzleActivity.this, R.style.AlertDialogCustom);
             builder.setTitle(getString(R.string.youLose));
             builder.setMessage(getString(R.string.Playagain));
@@ -402,7 +402,7 @@ vyvod();
     }
 
     public void retry(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
@@ -431,7 +431,7 @@ vyvod();
     }
 
     private void getNewGame(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         AlertDialog.Builder builder = new AlertDialog.Builder(PuzzleActivity.this, R.style.AlertDialogCustom);
         builder.setTitle(getString(R.string.continue_game));
         //builder.setMessage("Download the latest game?");

@@ -25,16 +25,20 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchListener.SimpleGestureListener {
+    private InterstitialAd mInterstitialAd;
+    private boolean isAd = false;
     private Mouse mouse;
     private boolean isGame = true;
     private SharedPreferences spref;
@@ -80,7 +84,7 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
         }
     };
 
-    private int cc;
+    private int cc=15;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +127,6 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
         snakeParts.add(new GameObject(14,5));
             emptyField();
             createMouse();
-
         detector = new OnSwipeTouchListener(this,this);
 
         game();
@@ -136,6 +139,10 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
         mAdView = findViewById(R.id.adViewActivitySnake);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5586713183085646/8151746207");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     public void emptyField(){
@@ -221,18 +228,27 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
     }
 
     private void getNewGame(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        if (isAd&&mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         final AlertDialog.Builder builder = new AlertDialog.Builder(SnakeActivity.this, R.style.AlertDialogCustom);
         builder.setTitle(getString(R.string.youLose));
         builder.setMessage(getString(R.string.Playagain));
         try{builder.setIcon(R.drawable.logo);}catch (Exception e){}
         builder.setCancelable(false);
-        builder.setNegativeButton(getString(R.string.yes),
+        builder.setNeutralButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         retry();
                     }
                 });
+        if (!isAd){
+        builder.setNegativeButton(getString(R.string.continue_btn),new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                continueGame();
+            }
+        });}
         builder.setPositiveButton(getString(R.string.menu),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -252,7 +268,8 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
                     @Override
                     public void run() {
                         AlertDialog alert = builder.create();
-                        alert.show();
+                        try{
+                        alert.show();}catch (Exception e){}
                     }
                 });
             }
@@ -262,13 +279,47 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
     }
 
     public void retry(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
         Intent intent = new Intent(this,SnakeActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private int horizontal = 0;
+    private int vertical = -1;
+    private void continueGame(){
+        isAd = true;
+        boolean plus = true;
+        for (int i = 0;i<snakeParts.size();i++){
+            if (horizontal==14){
+                plus = false;
+                vertical++;
+            }
+            if (horizontal == 0){
+                plus=true;
+                vertical++;
+            }
+            if (plus){
+                GameObject gameObject = new GameObject(horizontal,vertical);
+                snakeParts.set(i,gameObject);
+                horizontal++;
+            }else{horizontal--;
+                GameObject gameObject = new GameObject(horizontal,vertical);
+                snakeParts.set(i,gameObject);}
+
+        }
+        Collections.reverse(snakeParts);
+        this.direction=Direction.DOWN;
+        horizontal=0;
+        vertical=-1;
+        delay=500;
+        isGame=true;
+        emptyField();
+        game();
+        createMouse();
     }
 
     private GameObject createNewHead(){
@@ -323,18 +374,23 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void run() {
-            if (isGame){
-            game();
-                TextView textView = findViewById(R.id.scoreSnake);
-                try{textView.setText(getString((R.string.score))+score);}catch (Exception e){}
-                TextView textView2 = findViewById(R.id.maxScoreSnake);
-                maxScore = spref.getInt(SAVED_MAX_SCORE, 0);
-                if (maxScore<score){maxScore = score;
-                    SharedPreferences.Editor ed = spref.edit();
-                    ed.putInt(SAVED_MAX_SCORE,maxScore);
-                    ed.apply();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (isGame){
+                        game();
+                        TextView textView = findViewById(R.id.scoreSnake);
+                        try{textView.setText(getString((R.string.score))+score);}catch (Exception e){}
+                        TextView textView2 = findViewById(R.id.maxScoreSnake);
+                        maxScore = spref.getInt(SAVED_MAX_SCORE, 0);
+                        if (maxScore<score){maxScore = score;
+                            SharedPreferences.Editor ed = spref.edit();
+                            ed.putInt(SAVED_MAX_SCORE,maxScore);
+                            ed.apply();
+                        }
+                        try{textView2.setText(getString((R.string.max_score))+maxScore);}catch (Exception e){}}//else {delay=60000000;}
                 }
-                try{textView2.setText(getString((R.string.max_score))+maxScore);}catch (Exception e){}}else {delay=6000000;}
+            });
         }
     }
 
@@ -377,5 +433,6 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), newMenuActivity.class);
         startActivity(intent);
+        finish();
     }
 }

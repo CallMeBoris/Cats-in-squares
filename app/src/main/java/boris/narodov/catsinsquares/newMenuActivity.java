@@ -77,7 +77,7 @@ public class newMenuActivity extends AppCompatActivity {
     }
 
     public void classic(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         if (isSound()){
             mp.start();}
         Intent intent = new Intent(this, MainActivity.class);
@@ -86,7 +86,7 @@ public class newMenuActivity extends AppCompatActivity {
     }
 
     public void puzzle(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         if (isSound()){
             mp.start();}
         savedCheck();
@@ -96,7 +96,7 @@ public class newMenuActivity extends AppCompatActivity {
     }
 
     public void snake(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         if (isSound()){
             mp.start();}
         savedCheck();
@@ -106,7 +106,7 @@ public class newMenuActivity extends AppCompatActivity {
     }
 
     public void language(final View view) {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         if (isSound()){
             mp.start();}
         Intent intent = new Intent(this, Language.class);
@@ -115,7 +115,7 @@ public class newMenuActivity extends AppCompatActivity {
     }
 
     public void about(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         if (isSound()){
             mp.start();}
         Intent intent = new Intent(this, AboutTheAuthors.class);
@@ -124,7 +124,7 @@ public class newMenuActivity extends AppCompatActivity {
     }
 
     public void exit(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat2);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         if (isSound()){
             mp.start();}
         finish();

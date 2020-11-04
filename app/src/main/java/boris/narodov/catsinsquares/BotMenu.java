@@ -57,7 +57,7 @@ public class BotMenu extends AppCompatActivity {
     }
 
     public void backbot(View view){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}
@@ -68,7 +68,7 @@ public class BotMenu extends AppCompatActivity {
 
     public void easy(View view){
         savedCheck();
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}
@@ -82,7 +82,7 @@ public class BotMenu extends AppCompatActivity {
 
     public void medium(View view){
         savedCheck();
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
         mp.start();}
@@ -96,7 +96,7 @@ public class BotMenu extends AppCompatActivity {
 
     public void hard(View view){
         savedCheck();
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat1);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
         if (spref.getBoolean(SAVED_BOOL,false)){
             mp.start();}
