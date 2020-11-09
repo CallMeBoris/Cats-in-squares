@@ -22,6 +22,7 @@
     <string name="condition">Поле не подходит под условие</string>
     <string name="Playagain">Сыграть ещё раз?</string>
     <string name="yes">да</string>
+    <string name="no">нет</string>
     <string name="menu">меню</string>
     <string name="youLosebot">Вы проиграли. Нажмите на экран</string>
     <string name="youWinbot">Вы победили. Нажмите на экран</string>
@@ -61,4 +62,5 @@
     <string name="continue_btn">Продолжить</string>
     <string name="new_game">Новая игра</string>
     <string name="snake">Змейка</string>
+    <string name="rate">Пожалуйста, оцените приложение</string>
 </resources>

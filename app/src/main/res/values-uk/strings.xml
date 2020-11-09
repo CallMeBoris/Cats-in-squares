@@ -39,6 +39,7 @@
     <string name="condition">Поле не підходить під умови</string>
     <string name="Playagain">Зіграти ще раз?</string>
     <string name="yes">так</string>
+    <string name="no">немає</string>
     <string name="menu">меню</string>
 
     <string name="graph"><font size="20">Графiчний супровiд:</font>
@@ -61,4 +62,5 @@
     <string name="continue_btn">Продовжити</string>
     <string name="new_game">Нова гра</string>
     <string name="snake">Змiя</string>
+    <string name="rate">Оцiнiть додаток</string>
 </resources>

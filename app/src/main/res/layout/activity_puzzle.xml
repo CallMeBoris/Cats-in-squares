@@ -13,16 +13,6 @@
         android:layout_width="match_parent"
         android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout
@@ -42,19 +32,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginBottom="20dp"
-            android:layout_margin="10dp"
-            android:minHeight="250dp">
+            android:layout_marginBottom="10dp"
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/maxScore"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
+                android:layout_weight="6"
                 android:fontFamily="@font/dalmata_dream_normal_109866"
                 android:textColor="#000080"
-                android:textSize="28sp"
-                android:textStyle="italic"/>
+                android:textSize="26sp"
+                android:textStyle="italic"
+                android:gravity="center"/>
 
             <ImageButton
                 android:id="@+id/backStep"
@@ -65,21 +55,30 @@
 
             <TextView
                 android:id="@+id/score"
-                android:layout_weight="5"
-                style="@style/mainButtonsIn"
-                android:textSize="28sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
                 android:fontFamily="@font/dalmata_dream_normal_109866"
-                android:textColor="#000080"/>
+                android:textColor="#000080"
+                android:textSize="26sp"
+                android:textStyle="italic"
+                android:gravity="center"/>
         </TableRow>
 
-        <TableRow
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:layout_margin="3dp"
+            android:layout_marginTop="0dp">
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:id="@+id/gridPuzzle">
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/firstFirstPuzzle"
@@ -95,21 +94,9 @@
 
             <ImageView
                 android:id="@+id/firstFourthPuzzle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"/>
-        </TableRow>
+                android:layout_marginRight="0dp"
+                style="@style/mainButtonsIn"/>
 
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginBottom="5dp"
-            >
 
             <ImageView
                 android:id="@+id/secondFirstPuzzle"
@@ -125,20 +112,9 @@
 
             <ImageView
                 android:id="@+id/secondFourthPuzzle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:background="@android:color/transparent"/>
-        </TableRow>
+                android:layout_marginRight="0dp"
+                style="@style/mainButtonsIn"/>
 
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginBottom="5dp">
 
             <ImageView
                 android:id="@+id/thirdFirstPuzzle"
@@ -154,20 +130,9 @@
 
             <ImageView
                 android:id="@+id/thirdFourthPuzzle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:background="@android:color/transparent"/>
-        </TableRow>
+                android:layout_marginRight="0dp"
+                style="@style/mainButtonsIn"/>
 
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp">
 
             <ImageView
                 android:id="@+id/fourthFirstPuzzle"
@@ -183,13 +148,10 @@
 
             <ImageView
                 android:id="@+id/fourthFourthPuzzle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:background="@android:color/transparent"/>
-        </TableRow>
-
+                android:layout_marginRight="0dp"
+                style="@style/mainButtonsIn"/>
+            </GridLayout>
+        </FrameLayout>
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adViewActivityPuzzle"

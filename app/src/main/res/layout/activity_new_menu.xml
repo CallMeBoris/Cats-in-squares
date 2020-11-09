@@ -16,12 +16,11 @@
         android:layout_width="match_parent"
         android:scaleType="centerCrop"/>
 
+
     <TableLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
 
     <TableRow
         android:layout_width="0dp"
@@ -62,6 +61,19 @@
                 android:onClick="snake"/>
 
         </TableRow>
+
+<!--        <TableRow-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="4">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/tetris"-->
+<!--                style="@style/buttonsMenu"-->
+<!--                android:minHeight="70dp"-->
+<!--                android:onClick="tetris"/>-->
+
+<!--        </TableRow>-->
 
         <TableRow
             android:layout_width="0dp"

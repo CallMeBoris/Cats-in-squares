@@ -53,6 +53,7 @@ public class FullscreenActivity extends AppCompatActivity {
             {R.id.secondFirst,R.id.secondSecond,R.id.secondThird,R.id.secondFourth},
             {R.id.thirdFirst,R.id.thirdSecond,R.id.thirdThird,R.id.thirdFourth},
             {R.id.fourthFirst,R.id.fourthSecond,R.id.fourthThird,R.id.fourthFourth}};
+    int cc=15;
 
     private MediaPlayer mediaPlayer;
     Runnable sound = new Runnable() {
@@ -149,6 +150,7 @@ public class FullscreenActivity extends AppCompatActivity {
         int a = size.x;
         int b = size.y;
         int c = Math.max(a, b);
+        cc = (int) (b/(8.3));
         Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
         Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);
 
@@ -160,9 +162,11 @@ public class FullscreenActivity extends AppCompatActivity {
         Bitmap resizedTable = Bitmap.createScaledBitmap(bitTable,c,c,true);
         Drawable d = new BitmapDrawable(getResources(),resizedTable);
         try {
+            Bitmap bitBack = BitmapFactory.decodeResource(getResources(),R.drawable.nothing);
+            Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+            image3.setImageBitmap(resizedBack);
             image1.setImageBitmap(resized);
             image2.setBackground(d);
-            image3.setImageResource(R.drawable.nothing);
         }catch (Exception e){}
 
         setFourButtons(false);
@@ -275,7 +279,10 @@ public class FullscreenActivity extends AppCompatActivity {
         for (int i =0; i<4;i++){
             for (int j =0; j<4;j++) {
                 ImageButton imageButton = findViewById(buttons[i][j]);
-                imageButton.setImageResource(images[i][j]);
+                Bitmap bitBack = BitmapFactory.decodeResource(getResources(),images[i][j]);
+                try{
+                Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                imageButton.setImageBitmap(resizedBack);}catch (Exception e){}
             }
         }
     }
@@ -326,7 +333,9 @@ public class FullscreenActivity extends AppCompatActivity {
                     ImageButton enabled =findViewById(buttons[i][j]);
                     ImageButton imageButtonExample = findViewById(R.id.imageButtonTwoPlayers);
                     try{imageButtonExample.startAnimation(anim);
-                    imageButtonExample.setImageResource(b);}catch(Exception e){}
+                        Bitmap bitBack = BitmapFactory.decodeResource(getResources(),b);
+                        Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                    imageButtonExample.setImageBitmap(resizedBack);}catch(Exception e){}
                     images[i][j]=R.drawable.secondplayer;
 
                     try{enabled.startAnimation(anim);}catch(Exception e){}
@@ -347,7 +356,9 @@ public class FullscreenActivity extends AppCompatActivity {
                     TextView textView = findViewById(R.id.textView3);
                     ImageButton imageButtonExample = findViewById(R.id.imageButtonTwoPlayers);
                     try{imageButtonExample.startAnimation(anim);
-                    imageButtonExample.setImageResource(b);}catch(Exception e){}
+                        Bitmap bitBack = BitmapFactory.decodeResource(getResources(),b);
+                        Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                        imageButtonExample.setImageBitmap(resizedBack);}catch(Exception e){}
                     try{textView.setText(getString(R.string.blueGo));}catch (Exception e){}
                     images[i][j]=R.drawable.firstplayer;
                     ImageButton enabled =findViewById(buttons[i][j]);

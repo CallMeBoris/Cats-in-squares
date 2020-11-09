@@ -61,20 +61,22 @@
 
     <style name="mainButtonsIn">
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginRight">3dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:scaleType">fitCenter</item>
     </style>
 
     <style name="mainButtonsSnake">
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="mainImgTetris">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
 

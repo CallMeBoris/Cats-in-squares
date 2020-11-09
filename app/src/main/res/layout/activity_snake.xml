@@ -13,15 +13,6 @@
         android:layout_width="match_parent"
         android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -33,7 +24,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_marginRight="7dp"
             android:layout_marginLeft="7dp"
             android:layout_marginBottom="5dp"
@@ -43,10 +34,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginBottom="20dp"
-                android:layout_margin="10dp"
-                android:minHeight="150dp"
-                >
+                android:layout_marginBottom="10dp"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:id="@+id/maxScoreSnake"
@@ -56,23 +45,33 @@
                     android:fontFamily="@font/dalmata_dream_normal_109866"
                     android:textColor="#000080"
                     android:textSize="28sp"
-                    android:textStyle="italic"/>
+                    android:textStyle="italic"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/scoreSnake"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
-                    style="@style/mainButtonsIn"
-                    android:textSize="28sp"
                     android:fontFamily="@font/dalmata_dream_normal_109866"
-                    android:textColor="#000080"/>
+                    android:textColor="#000080"
+                    android:textSize="28sp"
+                    android:gravity="center"/>
             </TableRow>
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="0dp">
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:columnCount="15"
+                        android:orientation="horizontal"
+                        android:id="@+id/gridSnake">
 
                     <ImageView
                         android:id="@+id/snake1_1"
@@ -120,14 +119,6 @@
                         android:id="@+id/snake1_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/snake2_1"
@@ -176,14 +167,6 @@
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
 
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/snake3_1"
@@ -231,14 +214,8 @@
                         android:id="@+id/snake3_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake4_1"
@@ -286,14 +263,8 @@
                         android:id="@+id/snake4_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake5_1"
@@ -341,14 +312,8 @@
                         android:id="@+id/snake5_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake6_1"
@@ -396,14 +361,8 @@
                         android:id="@+id/snake6_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake7_1"
@@ -452,14 +411,8 @@
                         android:id="@+id/snake7_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake8_1"
@@ -507,14 +460,8 @@
                         android:id="@+id/snake8_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake9_1"
@@ -562,14 +509,8 @@
                         android:id="@+id/snake9_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake10_1"
@@ -617,14 +558,7 @@
                         android:id="@+id/snake10_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/snake11_1"
@@ -672,14 +606,8 @@
                         android:id="@+id/snake11_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake12_1"
@@ -727,14 +655,8 @@
                         android:id="@+id/snake12_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
+
 
                     <ImageView
                         android:id="@+id/snake13_1"
@@ -782,14 +704,7 @@
                         android:id="@+id/snake13_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/snake14_1"
@@ -837,15 +752,7 @@
                         android:id="@+id/snake14_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/snake15_1"
@@ -893,7 +800,8 @@
                         android:id="@+id/snake15_15"
                         style="@style/mainButtonsSnake"
                         android:layout_marginRight="0dp"/>
-                </TableRow>
+                    </GridLayout>
+                </FrameLayout>
 
                     <com.google.android.gms.ads.AdView
                         xmlns:ads="http://schemas.android.com/apk/res-auto"

@@ -44,7 +44,6 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
     private SharedPreferences spref;
     private final String SAVED_BOOL = "saved_bool";
     private final String SAVED_MAX_SCORE = "saved_max_score_snake";
-    private final String SAVED_SCORE = "saved_score_snake";
     private int score;
     private int maxScore;
     private Display display;
@@ -98,7 +97,7 @@ public class SnakeActivity extends AppCompatActivity implements OnSwipeTouchList
             a=1200;
             b=1200;
         }
-        cc =(int) ((b -94)/15);
+        cc =(int) ((b*7)/(15*15));
         int c = Math.max(a, b);
         Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
         Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);

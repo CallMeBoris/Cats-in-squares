@@ -47,6 +47,8 @@ The first player draws any card from the edge of the field, i.e. four cards from
     <string name="condition">The field does not match the condition</string>
     <string name="Playagain">Play again?</string>
     <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="rate">Please, rate the app</string>
     <string name="menu">menu</string>
 
     <string name="title_activity_fullscreen_bot_hard" translatable="false">FullscreenActivityBotHard</string>

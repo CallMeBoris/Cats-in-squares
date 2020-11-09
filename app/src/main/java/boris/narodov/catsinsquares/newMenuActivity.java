@@ -53,6 +53,7 @@ public class newMenuActivity extends AppCompatActivity {
         Button button4 = findViewById(R.id.about);
         Button button5 = findViewById(R.id.exitNewMenu);
         Button button6 = findViewById(R.id.snake);
+        //Button button7 = findViewById(R.id.tetris);
         OutlineTextView box = findViewById(R.id.soundNewMenu);
         try {
             image.setImageBitmap(resized);
@@ -62,6 +63,7 @@ public class newMenuActivity extends AppCompatActivity {
             button4.setText(getText(R.string.BtnAbout));
             button5.setText(getText(R.string.exit));
             button6.setText(getText(R.string.snake));
+            //button7.setText("Tetris");
             box.setText(getText(R.string.sound_on));
         }catch (Exception e){}
 
@@ -101,6 +103,16 @@ public class newMenuActivity extends AppCompatActivity {
             mp.start();}
         savedCheck();
         Intent intent = new Intent(this, SnakeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void tetris(View view){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.cat3);
+        if (isSound()){
+            mp.start();}
+        savedCheck();
+        Intent intent = new Intent(this, Tetris.class);
         startActivity(intent);
         finish();
     }

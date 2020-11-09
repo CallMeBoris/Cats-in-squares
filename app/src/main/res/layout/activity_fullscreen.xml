@@ -26,6 +26,7 @@
         android:keepScreenOn="true"
         android:textColor="#33b5e5"
         android:textSize="50sp"
+
         android:textStyle="bold" />
 
     <!-- This FrameLayout insets its children based on system windows using
@@ -47,32 +48,43 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/textView3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:fontFamily="@font/dalmata_dream_normal_109866"
                     android:textColor="#FFFF"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="italic" />
 
                 <ImageButton
                     android:id="@+id/imageButtonTwoPlayers"
-                    style="@style/mainButtonsIn" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"/>
             </TableRow>
 
-            <TableRow
 
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:layout_margin="3dp"
+                android:layout_marginTop="0dp">
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:id="@+id/gridPuzzle">
 
                 <ImageButton
                     android:id="@+id/firstFirst"
@@ -91,21 +103,10 @@
 
                 <ImageButton
                     android:id="@+id/firstFourth"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
+                    android:layout_marginRight="0dp"
+                    style="@style/mainButtonsIn"
                     android:onClick="talk"
-                    android:scaleType="centerInside" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="5dp">
+                    android:scaleType="fitCenter" />
 
                 <ImageButton
                     android:id="@+id/secondFirst"
@@ -124,21 +125,9 @@
 
                 <ImageButton
                     android:id="@+id/secondFourth"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="centerInside"
-                    android:background="@android:color/transparent"
+                    android:layout_marginRight="0dp"
+                    style="@style/mainButtonsIn"
                     android:onClick="talk"/>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="5dp">
 
                 <ImageButton
                     android:id="@+id/thirdFirst"
@@ -157,21 +146,9 @@
 
                 <ImageButton
                     android:id="@+id/thirdFourth"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="centerInside"
-                    android:background="@android:color/transparent"
+                    android:layout_marginRight="0dp"
+                    style="@style/mainButtonsIn"
                     android:onClick="talk"/>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp">
 
                 <ImageButton
                     android:id="@+id/fourthFirst"
@@ -190,14 +167,11 @@
 
                 <ImageButton
                     android:id="@+id/fourthFourth"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="centerInside"
-                    android:background="@android:color/transparent"
+                    android:layout_marginRight="0dp"
+                    style="@style/mainButtonsIn"
                     android:onClick="talk"/>
-            </TableRow>
-
+            </GridLayout>
+            </FrameLayout>
             <com.google.android.gms.ads.AdView
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adViewActivityTwoPlayers"
@@ -208,6 +182,7 @@
                 ads:adSize="BANNER"
                 ads:adUnitId="ca-app-pub-5586713183085646/3495504295">
             </com.google.android.gms.ads.AdView>
+
 
         </TableLayout>
         <LinearLayout

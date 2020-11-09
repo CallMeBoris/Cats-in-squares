@@ -61,6 +61,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
            {R.id.secondFirstBot,R.id.secondSecondBot,R.id.secondThirdBot,R.id.secondFourthBot},
             {R.id.thirdFirstBot,R.id.thirdSecondBot,R.id.thirdThirdBot,R.id.thirdFourthBot},
            {R.id.fourthFirstBot,R.id.fourthSecondBot,R.id.fourthThirdBot,R.id.fourthFourthBot}};
+    int cc=15;
 
     private int count=1;
     private String setText=null;
@@ -166,6 +167,7 @@ public class FullscreenActivitybot extends AppCompatActivity {
         int a = size.x;
         int b = size.y;
         int c = Math.max(a, b);
+        cc = (int) (b/(8.3));
         Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
         Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);
 
@@ -177,9 +179,11 @@ public class FullscreenActivitybot extends AppCompatActivity {
         Bitmap resizedTable = Bitmap.createScaledBitmap(bitTable,c,c,true);
         Drawable d = new BitmapDrawable(getResources(),resizedTable);
         try {
+            Bitmap bitBack = BitmapFactory.decodeResource(getResources(),R.drawable.nothing);
+            Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+            image3.setImageBitmap(resizedBack);
             image1.setImageBitmap(resized);
             image2.setBackground(d);
-            image3.setImageResource(R.drawable.nothing);
         }catch (Exception e){}
 
 
@@ -295,7 +299,10 @@ public class FullscreenActivitybot extends AppCompatActivity {
         for (int i =0; i<4;i++){
             for (int j =0; j<4;j++) {
                 ImageButton imageButton = findViewById(buttons[i][j]);
-                try{imageButton.setImageResource(images[i][j]);}catch (Exception e){}
+                Bitmap bitBack = BitmapFactory.decodeResource(getResources(),images[i][j]);
+                try{
+                    Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                    imageButton.setImageBitmap(resizedBack);}catch (Exception e){}
             }
         }
     }
@@ -518,7 +525,9 @@ public class FullscreenActivitybot extends AppCompatActivity {
                         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
                         if (spref.getBoolean(SAVED_BOOL,false)){
                             mp.start();}
-                        try{imageButtonExample.setImageResource(b);}catch (Exception e){}
+                        try{Bitmap bitBack = BitmapFactory.decodeResource(getResources(),b);
+                            Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                            imageButtonExample.setImageBitmap(resizedBack);}catch (Exception e){}
                         TextView textView = findViewById(R.id.textView3Bot);
                         try{textView.setText(getString(R.string.blueGo));}catch (Exception e){}
                         try{images[i][j] = R.drawable.firstplayer;}catch (Exception e){}
@@ -549,7 +558,9 @@ public class FullscreenActivitybot extends AppCompatActivity {
                         if (spref.getBoolean(SAVED_BOOL,false)){
                             mp.start();}
                         ImageButton imageButtonExample = findViewById(R.id.imageButtonEasy);
-                        try{imageButtonExample.setImageResource(b5);
+                        try{Bitmap bitBack = BitmapFactory.decodeResource(getResources(),b5);
+                            Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                            imageButtonExample.setImageBitmap(resizedBack);;
                         imageButtonExample.startAnimation(anim);}catch(Exception e){}
                         try{images[i1][j1] = R.drawable.secondplayer;}catch (Exception e){}
                         ImageButton enabled2 = findViewById(buttons[i1][j1]);

@@ -41,6 +41,10 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
 
     private MatrixWithEverything matrixWithEverything = new MatrixWithEverything();
     private int[][] images = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+    private int[][] imagesCat = {{R.drawable.catpuzzle2,R.drawable.catpuzzle4,R.drawable.catpuzzle8,R.drawable.catpuzzle16},
+            {R.drawable.catpuzzle32,R.drawable.catpuzzle64,R.drawable.catpuzzle128,R.drawable.catpuzzle256},
+            {R.drawable.catpuzzle512,R.drawable.catpuzzle1024,R.drawable.catpuzzle2048,R.drawable.catpuzzle4096},
+            {R.drawable.catpuzzle8192,R.drawable.catpuzzle16384,R.drawable.catpuzzle32768,R.drawable.catpuzzle65536}};
     private int[][] imagesRes = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     private int scoreRes=0;
     private int[][] imagesBackground = matrixWithEverything.getImages();
@@ -48,6 +52,9 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
             {R.id.secondFirstPuzzle,R.id.secondSecondPuzzle,R.id.secondThirdPuzzle,R.id.secondFourthPuzzle},
             {R.id.thirdFirstPuzzle,R.id.thirdSecondPuzzle,R.id.thirdThirdPuzzle,R.id.thirdFourthPuzzle},
             {R.id.fourthFirstPuzzle,R.id.fourthSecondPuzzle,R.id.fourthThirdPuzzle,R.id.fourthFourthPuzzle}};
+    private Bitmap[][] imagesBack = new Bitmap[4][4];
+    private Bitmap[][] imagesCats = new Bitmap[4][4];
+
 
     private MediaPlayer mediaPlayer;
     Runnable sound = new Runnable() {
@@ -65,11 +72,14 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
     int score, maxTile;
     int maxScore;
     private int sizeBtn=100;
+    int cc=15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
+
+
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -81,6 +91,7 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
             b=1200;
         }
         int c = Math.max(a, b);
+        cc = (int) (b/(8.3));
         sizeBtn = (int)(a/8);
         Bitmap bit = BitmapFactory.decodeResource(getResources(),R.drawable.backgr1);
         Bitmap resized = Bitmap.createScaledBitmap(bit,c,c,true);
@@ -103,6 +114,17 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
             image2.setBackground(d);
             buttonBack.setImageBitmap(resizedBtn);
         }catch (Exception e){}
+
+        for (int i =0; i<4;i++){
+            for (int j =0; j<4;j++) {
+                    Bitmap bitBack = BitmapFactory.decodeResource(getResources(),imagesBackground[i][j]);
+                    Bitmap resizedBack = Bitmap.createScaledBitmap(bitBack,cc,cc,true);
+                imagesBack[i][j]= resizedBack;
+                Bitmap bitCat = BitmapFactory.decodeResource(getResources(),(imagesCat[i][j]));
+                Bitmap resizedCat = Bitmap.createScaledBitmap(bitCat,cc,cc,true);
+                imagesCats[i][j]= resizedCat;
+            }
+        }
 
         Thread forSound = new Thread(sound);
         spref = getSharedPreferences("forsound", Context.MODE_PRIVATE);
@@ -143,9 +165,10 @@ public class PuzzleActivity extends AppCompatActivity implements OnSwipeTouchLis
             for (int j =0; j<4;j++) {
                 ImageView imageView = findViewById(idImages[i][j]);
                 if (images[i][j]==0){
-                    imageView.setImageResource(imagesBackground[i][j]);
+                    imageView.setImageBitmap(imagesBack[i][j]);
                 }else{
-                imageView.setImageResource(getTileColor(images[i][j]));}
+                imageView.setImageBitmap(getTileColor(images[i][j]));
+                }
             }
         }
         SharedPreferences.Editor ed = spref.edit();
@@ -363,42 +386,44 @@ vyvod();
         }
     }
 
-    public int getTileColor(int value){
+//    Bitmap bitCatLast = BitmapFactory.decodeResource(getResources(),(R.drawable.catpuzzle131072));
+//    Bitmap resizedCatLast = Bitmap.createScaledBitmap(bitCatLast,cc,cc,true);
+    public Bitmap getTileColor(int value){
         switch (value){
             case (2):
-                return R.drawable.catpuzzle2;
+                return imagesCats[0][0];
             case (4):
-                return R.drawable.catpuzzle4;
+                return imagesCats[0][1];
             case (8):
-                return R.drawable.catpuzzle8;
+                return imagesCats[0][2];
             case (16):
-                return R.drawable.catpuzzle16;
+                return imagesCats[0][3];
             case (32):
-                return R.drawable.catpuzzle32;
+                return imagesCats[1][0];
             case (64):
-                return R.drawable.catpuzzle64;
+                return imagesCats[1][1];
             case (128):
-                return R.drawable.catpuzzle128;
+                return imagesCats[1][2];
             case (256):
-                return R.drawable.catpuzzle256;
+                return imagesCats[1][3];
             case (512):
-                return R.drawable.catpuzzle512;
+                return imagesCats[2][0];
             case (1024):
-                return R.drawable.catpuzzle1024;
+                return imagesCats[2][1];
             case (2048):
-                return R.drawable.catpuzzle2048;
+                return imagesCats[2][2];
             case (4096):
-                return R.drawable.catpuzzle4096;
+                return imagesCats[2][3];
             case (8192):
-                return R.drawable.catpuzzle8192;
+                return imagesCats[3][0];
             case (16384):
-                return R.drawable.catpuzzle16384;
+                return imagesCats[3][1];
             case (32768):
-                return R.drawable.catpuzzle32768;
+                return imagesCats[3][2];
             case (65536):
-                return R.drawable.catpuzzle65536;
+                return imagesCats[3][3];
         }
-        return R.drawable.catpuzzle131072;
+        return imagesCats[3][3];
     }
 
     public void retry(){
